@@ -1,0 +1,66 @@
+﻿Dự kiến chức năng
+#Supplier
+- Index
+- Create
+- Edit(Id)
+- Delete(Id)
+#Customer
+- Index
++ Hiển thị dánh sách dưới dnagj phân trang
++ Tìm kiếm theo tên
++ Điều hướng các chức năng liên quan đến khách hàng
+- Create
+- Edit(Id)
+- Delete(Id)
+- ChangePassword(Id)
+#Shipper
+- Index
+- Create
+- Edit(Id)
+- Delete(Id)
+#Employee
+- Index
+- Create
+- Edit(Id)
+- Delete(Id)
+- ChangePassword(Id)
+- ChangeRole(Id)
+#Category
+- Index
+- Create
+- Edit(Id)
+- Delete(Id)
+#Product
+- Index
+- Create
+- Edit(Id)
+- Delete(Id)
+- Detail(Id)
+- ListAttributes(Id)
+- CreateAttributes(Id)?attributesId={attributesId}
+- EditAttributes(Id)?attributesId={attributesId}
+- DeleteAttributes(Id)?attributesId={attributesId}
+- ListPhoto(Id)
+- CreatePhoto(Id)
+- EditPhoto(Id)?photoId={photoId}
+- DeletePhoto(Id)?photoId={photoId}
+#Order
+- Index
+- Create
+
+
+
+
+
+
+
+Mặt hàng : đầu vào tìm kiếm / lọc dữ liệu
+ - loại hàng (select)
+ -nhà cung cấp (select)
+ -khoảng giá
+ -tên mặt hàng 
+ Đơn hàng : Đầu vào tìm kiếm / lọc dữ liệu
+ -trạng thái (select)
+ -thời gian (từ ngày - đến ngày)
+ -tên khách hàng 
+

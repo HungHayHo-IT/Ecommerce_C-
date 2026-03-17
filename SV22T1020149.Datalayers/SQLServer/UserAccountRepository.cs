@@ -1,0 +1,72 @@
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
+using SV22T1020149.DataLayers.Interfaces;
+using SV22T1020149.Models.Security;
+using System.Data;
+
+namespace SV22T1020149.DataLayers.SQLServer
+{
+    /// <summary>
+    /// Cài đặt các phép xử lý dữ liệu liên quan đến tài khoản người dùng trên SQL Server
+    /// </summary>
+    public class UserAccountRepository : IUserAccountRepository
+    {
+        private readonly string _connectionString;
+
+        public UserAccountRepository(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+        /// <summary>
+        /// Xác thực người dùng dựa trên Email và Password.
+        /// Giả định: UserId là EmployeeID, RoleNames mặc định là 'admin' hoặc lấy từ bảng phân quyền.
+        /// </summary>
+        public async Task<UserAccount?> Authorize(string userName, string password)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+
+                // Lưu ý: Trong thực tế mật khẩu nên được mã hóa (Hash). 
+                // Ở đây đang so sánh chuỗi trực tiếp theo yêu cầu cơ bản.
+                var sql = @"SELECT CAST(EmployeeID AS NVARCHAR) AS UserId,
+                                   Email AS UserName,
+                                   FullName AS DisplayName,
+                                   Email,
+                                   Photo,
+                                   N'admin' AS RoleNames
+                            FROM Employees
+                            WHERE Email = @userName AND Password = @password AND IsWorking = 1";
+
+                return await connection.QueryFirstOrDefaultAsync<UserAccount>(sql, new
+                {
+                    userName = userName,
+                    password = password
+                });
+            }
+        }
+
+        /// <summary>
+        /// Đổi mật khẩu cho nhân viên
+        /// </summary>
+        public async Task<bool> ChangePassword(string userName, string password)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                var sql = @"UPDATE Employees 
+                            SET Password = @password 
+                            WHERE Email = @userName";
+
+                var rowsAffected = await connection.ExecuteAsync(sql, new
+                {
+                    userName = userName,
+                    password = password
+                });
+
+                return rowsAffected > 0;
+            }
+        }
+    }
+}

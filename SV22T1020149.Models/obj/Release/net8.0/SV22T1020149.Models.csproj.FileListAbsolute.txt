@@ -1,0 +1,11 @@
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Models\bin\Release\net8.0\SV22T1020149.Models.deps.json
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Models\bin\Release\net8.0\SV22T1020149.Models.dll
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Models\bin\Release\net8.0\SV22T1020149.Models.pdb
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Models\obj\Release\net8.0\SV22T1020149.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Models\obj\Release\net8.0\SV22T1020149.Models.AssemblyInfoInputs.cache
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Models\obj\Release\net8.0\SV22T1020149.Models.AssemblyInfo.cs
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Models\obj\Release\net8.0\SV22T1020149.Models.csproj.CoreCompileInputs.cache
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Models\obj\Release\net8.0\SV22T1020149.Models.dll
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Models\obj\Release\net8.0\refint\SV22T1020149.Models.dll
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Models\obj\Release\net8.0\SV22T1020149.Models.pdb
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Models\obj\Release\net8.0\ref\SV22T1020149.Models.dll

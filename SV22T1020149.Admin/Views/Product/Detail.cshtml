@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Thông tin chi tiết mặt hàng";
+    // Giả sử Model là đối tượng Product
+    // var product = Model;
+}
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">@ViewBag.Title</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <div class="form-group">
+                    <img src="~/lib/adminlte/assets/img/prod-1.jpg" class="img-responsive img-thumbnail" style="max-height: 300px;" alt="Product Image">
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <dl class="dl-horizontal">
+                    <dt>Tên mặt hàng:</dt>
+                    <dd class="text-blue" style="font-size: 1.2em; font-weight: bold;">Sữa bột Vinamilk</dd>
+
+                    <dt>Loại hàng:</dt>
+                    <dd>Thực phẩm chức năng</dd>
+
+                    <dt>Nhà cung cấp:</dt>
+                    <dd>Công ty Vinamilk</dd>
+
+                    <dt>Đơn vị tính:</dt>
+                    <dd>Hộp</dd>
+
+                    <dt>Giá hàng:</dt>
+                    <dd class="text-red" style="font-weight: bold;">250.000 đ</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-footer text-center">
+        <a href="~/Product/Edit/1" class="btn btn-primary">
+            <i class="fa fa-pencil"></i> Sửa thông tin
+        </a>
+        <a href="~/Product" class="btn btn-default">
+            <i class="fa fa-arrow-left"></i> Quay lại
+        </a>
+    </div>
+</div>

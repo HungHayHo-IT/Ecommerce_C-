@@ -1,0 +1,15 @@
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\bin\Release\net8.0\SV22T1020149.Datalayers.deps.json
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\bin\Release\net8.0\SV22T1020149.Datalayers.dll
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\bin\Release\net8.0\SV22T1020149.Datalayers.pdb
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\SV22T1020149.Datalayers.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\SV22T1020149.Datalayers.AssemblyInfoInputs.cache
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\SV22T1020149.Datalayers.AssemblyInfo.cs
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\SV22T1020149.Datalayers.csproj.CoreCompileInputs.cache
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\SV22T1020149.Datalayers.dll
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\refint\SV22T1020149.Datalayers.dll
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\SV22T1020149.Datalayers.pdb
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\ref\SV22T1020149.Datalayers.dll
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\bin\Release\net8.0\SV22T1020149.Models.dll
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\bin\Release\net8.0\SV22T1020149.Models.pdb
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\SV22T1020149.Datalayers.csproj.AssemblyReference.cache
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\SV22T102.C84D7529.Up2Date

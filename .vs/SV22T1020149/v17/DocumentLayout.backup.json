@@ -1,0 +1,868 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\views\\customer\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\views\\customer\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.models\\partner\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|solutionrelative:sv22t1020149.models\\partner\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{785BA07E-30A5-4E46-8F67-BB784DE7F20F}|SV22T1020149.BussinessLayers\\SV22T1020149.BussinessLayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.bussinesslayers\\partnerdataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{785BA07E-30A5-4E46-8F67-BB784DE7F20F}|SV22T1020149.BussinessLayers\\SV22T1020149.BussinessLayers.csproj|solutionrelative:sv22t1020149.bussinesslayers\\partnerdataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\sqlserver\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\sqlserver\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\interfaces\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\interfaces\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\interfaces\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\interfaces\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{785BA07E-30A5-4E46-8F67-BB784DE7F20F}|SV22T1020149.BussinessLayers\\SV22T1020149.BussinessLayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.bussinesslayers\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{785BA07E-30A5-4E46-8F67-BB784DE7F20F}|SV22T1020149.BussinessLayers\\SV22T1020149.BussinessLayers.csproj|solutionrelative:sv22t1020149.bussinesslayers\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{785BA07E-30A5-4E46-8F67-BB784DE7F20F}|SV22T1020149.BussinessLayers\\SV22T1020149.BussinessLayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.bussinesslayers\\sv22t1020149.bussinesslayers.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{785BA07E-30A5-4E46-8F67-BB784DE7F20F}|SV22T1020149.BussinessLayers\\SV22T1020149.BussinessLayers.csproj|solutionrelative:sv22t1020149.bussinesslayers\\sv22t1020149.bussinesslayers.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\sv22t1020149.datalayers.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\sv22t1020149.datalayers.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\sv22t1020149.admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\sv22t1020149.admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{785BA07E-30A5-4E46-8F67-BB784DE7F20F}|SV22T1020149.BussinessLayers\\SV22T1020149.BussinessLayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.bussinesslayers\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{785BA07E-30A5-4E46-8F67-BB784DE7F20F}|SV22T1020149.BussinessLayers\\SV22T1020149.BussinessLayers.csproj|solutionrelative:sv22t1020149.bussinesslayers\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\interfaces\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\interfaces\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\interfaces\\idatadictionaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\interfaces\\idatadictionaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\appcodes\\applicationcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\appcodes\\applicationcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\sqlserver\\shipperrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\sqlserver\\shipperrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\sqlserver\\supplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\sqlserver\\supplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\sqlserver\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\sqlserver\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\sqlserver\\useraccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\sqlserver\\useraccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\sqlserver\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\sqlserver\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\sqlserver\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\sqlserver\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\sqlserver\\provincerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\sqlserver\\provincerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\interfaces\\iuseraccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\interfaces\\iuseraccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.datalayers\\interfaces\\iemployeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8157AA1-70EA-4414-8334-9E519F6DE86A}|SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj|solutionrelative:sv22t1020149.datalayers\\interfaces\\iemployeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.models\\partner\\shipper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|solutionrelative:sv22t1020149.models\\partner\\shipper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.models\\common\\pagedresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|solutionrelative:sv22t1020149.models\\common\\pagedresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.models\\partner\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|solutionrelative:sv22t1020149.models\\partner\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.models\\common\\paginationsearchinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|solutionrelative:sv22t1020149.models\\common\\paginationsearchinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.models\\common\\pageitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|solutionrelative:sv22t1020149.models\\common\\pageitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.models\\sales\\orderviewinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|solutionrelative:sv22t1020149.models\\sales\\orderviewinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.models\\sales\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|solutionrelative:sv22t1020149.models\\sales\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.models\\catalog\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|solutionrelative:sv22t1020149.models\\catalog\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.models\\catalog\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|solutionrelative:sv22t1020149.models\\catalog\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.models\\catalog\\productphoto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|solutionrelative:sv22t1020149.models\\catalog\\productphoto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.models\\catalog\\productattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D35712A-6665-4746-8792-78804F50A01C}|SV22T1020149.Models\\SV22T1020149.Models.csproj|solutionrelative:sv22t1020149.models\\catalog\\productattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\views\\order\\editcartitem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\views\\order\\editcartitem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0238EB1D-3C3A-42ED-9BC4-9A9931996C52}|SV22T1020149.Shop\\SV22T1020149.Shop.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.shop\\sv22t1020149.shop.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{0238EB1D-3C3A-42ED-9BC4-9A9931996C52}|SV22T1020149.Shop\\SV22T1020149.Shop.csproj|solutionrelative:sv22t1020149.shop\\sv22t1020149.shop.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\views\\product\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\views\\product\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\controllers\\shippercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\controllers\\shippercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|c:\\users\\windows\\source\\repos\\sv22t1020149\\sv22t1020149.admin\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97A01AE1-170A-4F1B-9772-27482360C97B}|SV22T1020149.Admin\\SV22T1020149.Admin.csproj|solutionrelative:sv22t1020149.admin\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 280,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "SV22T1020149.Admin\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-14T03:16:52.895Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\Customer\\Index.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Views\\Customer\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\Customer\\Index.cshtml",
+              "RelativeToolTip": "SV22T1020149.Admin\\Views\\Customer\\Index.cshtml",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAGEAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-14T02:58:46.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "SV22T1020149.Admin\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAUwAcAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-14T02:52:53.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.BussinessLayers\\Class1.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.BussinessLayers\\Class1.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.BussinessLayers\\Class1.cs",
+              "RelativeToolTip": "SV22T1020149.BussinessLayers\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T01:10:39.099Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Configuration.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.BussinessLayers\\Configuration.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.BussinessLayers\\Configuration.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.BussinessLayers\\Configuration.cs",
+              "RelativeToolTip": "SV22T1020149.BussinessLayers\\Configuration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAPCCwAQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T01:11:06.988Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\appsettings.json",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\appsettings.json",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\appsettings.json",
+              "RelativeToolTip": "SV22T1020149.Admin\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-14T00:56:28.059Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SV22T1020149.Admin.csproj",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\SV22T1020149.Admin.csproj",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\SV22T1020149.Admin.csproj",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\SV22T1020149.Admin.csproj",
+              "RelativeToolTip": "SV22T1020149.Admin\\SV22T1020149.Admin.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-14T00:43:49.175Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\SQLServer\\OrderRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\OrderRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\SQLServer\\OrderRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T00:35:39.238Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UserAccountRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\UserAccountRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\SQLServer\\UserAccountRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\UserAccountRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\SQLServer\\UserAccountRepository.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T14:24:53.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ProvinceRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\ProvinceRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\SQLServer\\ProvinceRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\ProvinceRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\SQLServer\\ProvinceRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T14:24:50.405Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "IUserAccountRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\Interfaces\\IUserAccountRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\Interfaces\\IUserAccountRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\Interfaces\\IUserAccountRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\Interfaces\\IUserAccountRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T14:24:36.433Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\SQLServer\\ProductRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\ProductRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\SQLServer\\ProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T14:24:03.124Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\CustomerRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\SQLServer\\CustomerRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\CustomerRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\SQLServer\\CustomerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJ8AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T03:17:48.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Partner\\Customer.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Models\\Partner\\Customer.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Partner\\Customer.cs",
+              "RelativeToolTip": "SV22T1020149.Models\\Partner\\Customer.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAIA0wCYAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T03:16:24.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "CategoryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\CategoryRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\SQLServer\\CategoryRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\CategoryRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\SQLServer\\CategoryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T03:12:31.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ShipperRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\ShipperRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\SQLServer\\ShipperRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\ShipperRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\SQLServer\\ShipperRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T03:11:11.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Shipper.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Partner\\Shipper.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Models\\Partner\\Shipper.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Partner\\Shipper.cs",
+              "RelativeToolTip": "SV22T1020149.Models\\Partner\\Shipper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T03:10:36.54Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "SupplierRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\SupplierRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\SQLServer\\SupplierRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SQLServer\\SupplierRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\SQLServer\\SupplierRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T03:09:05.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Supplier.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Partner\\Supplier.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Models\\Partner\\Supplier.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Partner\\Supplier.cs",
+              "RelativeToolTip": "SV22T1020149.Models\\Partner\\Supplier.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T03:06:09.286Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IGenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\Interfaces\\IGenericRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\Interfaces\\IGenericRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\Interfaces\\IGenericRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\Interfaces\\IGenericRepository.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAuwCIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T02:55:45.498Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "IEmployeeRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\Interfaces\\IEmployeeRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\Interfaces\\IEmployeeRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\Interfaces\\IEmployeeRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\Interfaces\\IEmployeeRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T02:54:54.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "PaginationSearchInput.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Common\\PaginationSearchInput.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Models\\Common\\PaginationSearchInput.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Common\\PaginationSearchInput.cs",
+              "RelativeToolTip": "SV22T1020149.Models\\Common\\PaginationSearchInput.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T02:54:42.696Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "PageItem.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Common\\PageItem.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Models\\Common\\PageItem.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Common\\PageItem.cs",
+              "RelativeToolTip": "SV22T1020149.Models\\Common\\PageItem.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAADwvx8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T02:54:37.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PagedResult.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Common\\PagedResult.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Models\\Common\\PagedResult.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Common\\PagedResult.cs",
+              "RelativeToolTip": "SV22T1020149.Models\\Common\\PagedResult.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAmwHcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T02:54:17.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "OrderViewInfo.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Sales\\OrderViewInfo.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Models\\Sales\\OrderViewInfo.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Sales\\OrderViewInfo.cs",
+              "RelativeToolTip": "SV22T1020149.Models\\Sales\\OrderViewInfo.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T02:30:18.352Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "IOrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\Interfaces\\IOrderRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\Interfaces\\IOrderRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\Interfaces\\IOrderRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\Interfaces\\IOrderRepository.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAmwCkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T01:21:41.369Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IDataDictionaryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\Interfaces\\IDataDictionaryRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\Interfaces\\IDataDictionaryRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\Interfaces\\IDataDictionaryRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\Interfaces\\IDataDictionaryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T01:21:39.905Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ICustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\Interfaces\\ICustomerRepository.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\Interfaces\\ICustomerRepository.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\Interfaces\\ICustomerRepository.cs",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\Interfaces\\ICustomerRepository.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAgwA0AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T01:19:59.21Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SV22T1020149.Datalayers.csproj",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj",
+              "RelativeDocumentMoniker": "SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj",
+              "RelativeToolTip": "SV22T1020149.Datalayers\\SV22T1020149.Datalayers.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-11T01:07:17.349Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "ProductPhoto.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Catalog\\ProductPhoto.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Models\\Catalog\\ProductPhoto.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Catalog\\ProductPhoto.cs",
+              "RelativeToolTip": "SV22T1020149.Models\\Catalog\\ProductPhoto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T02:43:22.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "ProductAttribute.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Catalog\\ProductAttribute.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Models\\Catalog\\ProductAttribute.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Catalog\\ProductAttribute.cs",
+              "RelativeToolTip": "SV22T1020149.Models\\Catalog\\ProductAttribute.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T02:43:19.898Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Catalog\\Product.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Models\\Catalog\\Product.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Catalog\\Product.cs",
+              "RelativeToolTip": "SV22T1020149.Models\\Catalog\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T02:43:18.661Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Catalog\\Category.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Models\\Catalog\\Category.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Catalog\\Category.cs",
+              "RelativeToolTip": "SV22T1020149.Models\\Catalog\\Category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T02:42:17.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "EditCartItem.cshtml",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\Order\\EditCartItem.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Views\\Order\\EditCartItem.cshtml",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\Order\\EditCartItem.cshtml",
+              "RelativeToolTip": "SV22T1020149.Admin\\Views\\Order\\EditCartItem.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEMAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-07T00:37:06.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "SV22T1020149.Shop.csproj",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Shop\\SV22T1020149.Shop.csproj",
+              "RelativeDocumentMoniker": "SV22T1020149.Shop\\SV22T1020149.Shop.csproj",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Shop\\SV22T1020149.Shop.csproj",
+              "RelativeToolTip": "SV22T1020149.Shop\\SV22T1020149.Shop.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-04T02:15:58.516Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\Product\\Index.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Views\\Product\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\Product\\Index.cshtml",
+              "RelativeToolTip": "SV22T1020149.Admin\\Views\\Product\\Index.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAIBZwFwAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-04T02:08:31.904Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\Product\\Delete.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Views\\Product\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\Product\\Delete.cshtml",
+              "RelativeToolTip": "SV22T1020149.Admin\\Views\\Product\\Delete.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAIBZwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-04T02:08:11.142Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "_Header.cshtml",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\Shared\\_Header.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Views\\Shared\\_Header.cshtml",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Views\\Shared\\_Header.cshtml",
+              "RelativeToolTip": "SV22T1020149.Admin\\Views\\Shared\\_Header.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-04T01:59:15.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "SV22T1020149.Admin\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwAwAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T01:24:10.358Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Controllers\\OrderController.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "SV22T1020149.Admin\\Controllers\\OrderController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T01:18:22.744Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Controllers\\ProductController.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "SV22T1020149.Admin\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAgwAcAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T01:13:39.106Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Controllers\\EmployeeController.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "SV22T1020149.Admin\\Controllers\\EmployeeController.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAUwDsAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T01:06:29.839Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "ShipperController.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\ShipperController.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Controllers\\ShipperController.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\ShipperController.cs",
+              "RelativeToolTip": "SV22T1020149.Admin\\Controllers\\ShipperController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCYAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T01:03:27.246Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Controllers\\CustomerController.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "SV22T1020149.Admin\\Controllers\\CustomerController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T00:59:44.037Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "SupplierController.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\SupplierController.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Controllers\\SupplierController.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\SupplierController.cs",
+              "RelativeToolTip": "SV22T1020149.Admin\\Controllers\\SupplierController.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwCQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T00:56:52.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "SV22T1020149.Admin\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T00:56:43.394Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 120,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PartnerDataService.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.BussinessLayers\\PartnerDataService.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.BussinessLayers\\PartnerDataService.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.BussinessLayers\\PartnerDataService.cs",
+              "RelativeToolTip": "SV22T1020149.BussinessLayers\\PartnerDataService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAN4AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T01:25:37.502Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "SV22T1020149.BussinessLayers.csproj",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.BussinessLayers\\SV22T1020149.BussinessLayers.csproj",
+              "RelativeDocumentMoniker": "SV22T1020149.BussinessLayers\\SV22T1020149.BussinessLayers.csproj",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.BussinessLayers\\SV22T1020149.BussinessLayers.csproj",
+              "RelativeToolTip": "SV22T1020149.BussinessLayers\\SV22T1020149.BussinessLayers.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-14T00:55:46.677Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Program.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Program.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Program.cs",
+              "RelativeToolTip": "SV22T1020149.Admin\\Program.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAYwEUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T00:50:13.682Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ApplicationContext.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\AppCodes\\ApplicationContext.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\AppCodes\\ApplicationContext.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\AppCodes\\ApplicationContext.cs",
+              "RelativeToolTip": "SV22T1020149.Admin\\AppCodes\\ApplicationContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T00:48:23.639Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "TestController.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\TestController.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Admin\\Controllers\\TestController.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Admin\\Controllers\\TestController.cs",
+              "RelativeToolTip": "SV22T1020149.Admin\\Controllers\\TestController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T03:38:15.625Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Sales\\Order.cs",
+              "RelativeDocumentMoniker": "SV22T1020149.Models\\Sales\\Order.cs",
+              "ToolTip": "C:\\Users\\Windows\\source\\repos\\SV22T1020149\\SV22T1020149.Models\\Sales\\Order.cs",
+              "RelativeToolTip": "SV22T1020149.Models\\Sales\\Order.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAgwAkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T02:27:48.466Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
