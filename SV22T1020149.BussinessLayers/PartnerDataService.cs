@@ -31,7 +31,7 @@ namespace SV22T1020149.BussinessLayers
         private static readonly IGenericRepository<Supplier> supplierDB;
         private static readonly IGenericRepository<Shipper> shipperDB;
         private static readonly ICustomerRepository customerDB;
-        private static readonly IEmployeeRepository employeeDB;
+    private static readonly IGenericRepository<Shipper> shipperDB;
 
         /// <summary>
         /// Hàm khởi tạo tĩnh.
