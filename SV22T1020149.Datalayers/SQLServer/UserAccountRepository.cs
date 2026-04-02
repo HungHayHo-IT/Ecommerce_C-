@@ -22,7 +22,7 @@ namespace SV22T1020149.DataLayers.SQLServer
         /// Xác thực người dùng dựa trên Email và Password.
         /// Giả định: UserId là EmployeeID, RoleNames mặc định là 'admin' hoặc lấy từ bảng phân quyền.
         /// </summary>
-        public async Task<UserAccount?> Authorize(string userName, string password)
+        public async Task<UserAccount?> AuthorizeAsync(string userName, string password)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -50,7 +50,7 @@ namespace SV22T1020149.DataLayers.SQLServer
         /// <summary>
         /// Đổi mật khẩu cho nhân viên
         /// </summary>
-        public async Task<bool> ChangePassword(string userName, string password)
+        public async Task<bool> ChangePasswordAsync(string userName, string password)
         {
             using (var connection = new SqlConnection(_connectionString))
             {

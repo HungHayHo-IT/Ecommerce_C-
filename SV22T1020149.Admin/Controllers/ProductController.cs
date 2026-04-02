@@ -1,149 +1,151 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SV22T1020149.BusinessLayers;
+using SV22T1020149.Models.Catalog;
+using SV22T1020149.Models.Common;
 
 namespace SV22T1020149.Admin.Controllers
 {
+    /// <summary>
+    /// Controller quản lý các hoạt động liên quan đến mặt hàng (sản phẩm)
+    /// </summary>
     public class ProductController : Controller
     {
+        private const int PAGESIZE = 10;
         /// <summary>
-        /// trang hiển thị các sản phẩm và các chức năng quản lý sản phẩm
+        /// Tên của biến dùng để lưu điều kiện tìm kiếm mặt hàng trong session
+        /// </summary>
+        private const string PRODUCT_SEARCH = "ProductSearchInput";
+        /// <summary>
+        /// Nhập đầu vào tìm kiếm
         /// </summary>
         /// <returns></returns>
         public IActionResult Index()
         {
-            return View();
+            var input = ApplicationContext.GetSessionData<ProductSearchInput>(PRODUCT_SEARCH);
+            if (input == null)
+                input = new ProductSearchInput()
+                {
+                    Page = 1,
+                    PageSize = ApplicationContext.PageSize,
+                    SearchValue = ""
+                };
+            return View(input);
+        }
+        /// <summary>
+        /// Tìm kiếm và trả về kết quả
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> Search(ProductSearchInput input)
+        {
+            var result = await CatalogDataService.ListProductsAsync(input);
+            ApplicationContext.SetSessionData(PRODUCT_SEARCH, input);
+            return View(result);
         }
 
         /// <summary>
-        /// Bổ sung khởi tạo sản phẩm mới
+        /// Giao diện thêm mới mặt hàng
         /// </summary>
-        /// <returns></returns>
         public IActionResult Create()
         {
-            ViewBag.Title = "Bổ sung ";
-
+            ViewBag.Title = "Thêm mới mặt hàng";
             return View("Edit");
         }
 
         /// <summary>
-        /// chỉnh sửa thông tin sản phẩm
+        /// Giao diện cập nhật thông tin mặt hàng
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-
+        /// <param name="id">Mã mặt hàng</param>
         public IActionResult Edit(int id)
         {
-            
+            ViewBag.Title = "Cập nhật mặt hàng";
             return View();
         }
 
         /// <summary>
-        /// xóa sản phẩm ra khỏi hệ thống
+        /// Xác nhận xóa mặt hàng
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Mã mặt hàng</param>
         public IActionResult Delete(int id)
         {
             return View();
         }
 
-        /// <summary>
-        /// xem chi tiết thông tin sản phẩm, bao gồm các thuộc tính và ảnh liên quan
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IActionResult Detail(int id)
-        {
-            
-            return View();
-        }
-
+        // --- QUẢN LÝ THUỘC TÍNH (ATTRIBUTES) ---
 
         /// <summary>
-        /// xem danh sách các thuộc tính của sản phẩm, có thể bao gồm các chức năng thêm, sửa, xóa thuộc tính
+        /// Hiển thị danh sách thuộc tính của một mặt hàng
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Mã mặt hàng</param>
         public IActionResult ListAttributes(int id)
         {
             return View();
         }
 
-
         /// <summary>
-        /// thêm mới một thuộc tính cho sản phẩm
+        /// Giao diện thêm mới thuộc tính cho mặt hàng
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Mã mặt hàng (Sở hữu thuộc tính)</param>
         public IActionResult CreateAttribute(int id)
         {
-            ViewBag.Title = "Bổ sung thuộc tính";
-            return View("EditAttribute");
+            return View();
         }
 
         /// <summary>
-        /// chỉnh sửa thông tin 1 thuộc tính sản phẩm
+        /// Giao diện cập nhật thuộc tính của mặt hàng
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="attributeId"></param>
-        /// <returns></returns>
+        /// <param name="id">Mã mặt hàng</param>
+        /// <param name="attributeId">Mã thuộc tính cụ thể</param>
         public IActionResult EditAttribute(int id, int attributeId)
         {
-            ViewBag.Title = "Thay đổi thuộc tính";
             return View();
         }
 
-        
         /// <summary>
-        /// Xóa một thuộc tính sản phẩm
+        /// Xóa thuộc tính của mặt hàng
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="attributeId"></param>
-        /// <returns></returns>
+        /// <param name="id">Mã mặt hàng</param>
+        /// <param name="attributeId">Mã thuộc tính cụ thể</param>
         public IActionResult DeleteAttribute(int id, int attributeId)
         {
-            
             return View();
         }
 
+        // --- QUẢN LÝ ẢNH (PHOTOS) ---
+
         /// <summary>
-        /// hiển thị danh sách các ảnh liên quan đến sản phẩm
+        /// Hiển thị danh sách ảnh của mặt hàng
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IActionResult ListPhoto(int id)
+        /// <param name="id">Mã mặt hàng</param>
+        public IActionResult ListPhotos(int id)
         {
             return View();
         }
 
         /// <summary>
-        /// Thêm ảnh mới cho sản phẩm
+        /// Giao diện thêm mới ảnh cho mặt hàng
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Mã mặt hàng (Sở hữu ảnh)</param>
         public IActionResult CreatePhoto(int id)
         {
-            ViewBag.Title = "Bổ sung ảnh";
-            return View("EditPhoto");
-        }
-
-        /// <summary>
-        /// Chỉnh sửa thông tin ảnh
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="photoId"></param>
-        /// <returns></returns>
-        public IActionResult EditPhoto(int id, int photoId)
-        {
-            ViewBag.Title = "Thay đổi ảnh";
             return View();
         }
 
         /// <summary>
-        /// Xóa ảnh
+        /// Giao diện cập nhật ảnh của mặt hàng
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="photoId"></param>
-        /// <returns></returns>
+        /// <param name="id">Mã mặt hàng</param>
+        /// <param name="photoId">Mã ảnh cụ thể</param>
+        public IActionResult EditPhoto(int id, int photoId)
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Xóa ảnh của mặt hàng
+        /// </summary>
+        /// <param name="id">Mã mặt hàng</param>
+        /// <param name="photoId">Mã ảnh cụ thể</param>
         public IActionResult DeletePhoto(int id, int photoId)
         {
             return View();

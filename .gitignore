@@ -1,5 +1,9 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+﻿# Bỏ qua thư mục cache của Visual Studio
+.vs/
 
-/SV22T1020149.Admin/Controllers/CustomerController.cs
+# Bỏ qua các thư mục build (rất quan trọng)
+[Bb]in/
+[Oo]bj/
+
+# Các file cấu hình cá nhân
+*.user

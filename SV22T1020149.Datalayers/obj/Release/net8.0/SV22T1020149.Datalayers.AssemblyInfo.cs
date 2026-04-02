@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SV22T1020149.Datalayers")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c84056c83a2d1ee44d8805a8b8983b85df7999d6")]
 [assembly: System.Reflection.AssemblyProductAttribute("SV22T1020149.Datalayers")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SV22T1020149.Datalayers")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

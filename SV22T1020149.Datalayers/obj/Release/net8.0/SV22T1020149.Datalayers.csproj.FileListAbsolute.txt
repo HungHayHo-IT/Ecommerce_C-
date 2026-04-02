@@ -13,3 +13,4 @@ C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\bin\Release\n
 C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\bin\Release\net8.0\SV22T1020149.Models.pdb
 C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\SV22T1020149.Datalayers.csproj.AssemblyReference.cache
 C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\SV22T102.C84D7529.Up2Date
+C:\Users\Windows\source\repos\SV22T1020149\SV22T1020149.Datalayers\obj\Release\net8.0\SV22T1020149.Datalayers.sourcelink.json

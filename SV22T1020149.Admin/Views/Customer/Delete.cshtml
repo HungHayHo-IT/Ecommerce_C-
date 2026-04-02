@@ -1,12 +1,17 @@
-﻿@{
+﻿@model Customer
+@{
     ViewBag.Title = "Xóa khách hàng";
 }
 
 @section PageToolBar {
-    <button type="submit" form="formDelete" class="btn btn-danger">
-        <i class="bi bi-trash me-1"></i>
-        Xóa
-    </button>
+    @if (ViewBag.CanDelete)
+    {
+        <button type="submit" form="formDelete" class="btn btn-danger">
+            <i class="bi bi-trash me-1"></i>
+            Xóa
+        </button>
+    }
+
 
     <a href="~/Customer" class="btn btn-secondary ms-1">
         <i class="bi bi-arrow-left"></i>
@@ -20,21 +25,31 @@
             <div class="card-header">
                 <h5 class="card-title mb-0 text-danger">
                     <i class="bi bi-exclamation-triangle me-2"></i>
-                    Xác nhận xóa khách hàng
+                   @(ViewBag.CanDelete ? "Xác nhận xóa khách hàng":"thông báo")
                 </h5>
             </div>
 
             <div class="card-body">
-                <form id="formDelete" method="post">
+                <form id="formDelete" method="post" action="~/Customer/Delete/@Model.CustomerID">
 
-                    <div class="alert alert-warning d-flex align-items-center">
-                        <i class="bi bi-info-circle me-2"></i>
-                        Bạn có chắc chắn muốn xóa khách hàng sau không?
-                    </div>
+                        @if (ViewBag.CanDelete)
+                    {
+                        <div class="alert alert-warning d-flex align-items-center">
+                            <i class="bi bi-info-circle me-2"></i>
+                            Bạn có chắc chắn muốn xóa khách hàng sau không?
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning d-flex align-items-center">
+                            <i class="bi bi-info-circle me-2"></i>
+                            Bạn không thể xóa khách hàng này ví khách hàng đã có đơn hàng
+                        </div>
+                    }
 
                     <dl class="row mb-0">
                         <dt class="col-sm-4">Tên khách hàng</dt>
-                        <dd class="col-sm-8">Nguyễn Văn A</dd>
+                        <dd class="col-sm-8">@Model.ContactName</dd>
 
                         <dt class="col-sm-4">Tên giao dịch</dt>
                         <dd class="col-sm-8">Nguyen Van A Trading</dd>
