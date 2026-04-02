@@ -1,4 +1,4 @@
-﻿@model OrderDetailViewInfo
+@model OrderDetailViewInfo
 @{
     Layout = null;
 }
@@ -30,7 +30,7 @@
                         <input type="number"
                                class="form-control text-end"
                                min="1"
-                               value="1">
+                               asp-for="Quantity">
                     </div>
                 </div>
                 <div class="row mb-3 align-items-center">
@@ -55,7 +55,7 @@
 </div>
 
 <div class="modal-footer">
-    <button type="submit" class="btn btn-primary" form="">
+    <button type="submit" class="btn btn-primary" form="formEditCart">
         Cập nhật
     </button>
     <button type="button"

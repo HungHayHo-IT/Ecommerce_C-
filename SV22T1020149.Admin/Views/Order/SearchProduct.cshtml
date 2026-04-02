@@ -1,51 +1,82 @@
-﻿@model PagedResult<Product>
+@model PagedResult<Product>
 @{
     Layout = null;
 }
 @foreach (var item in Model.DataItems)
 {
-    <form method="post" class="border rounded p-2 mb-2" onsubmit="addCartItem(event,this)">
+    <form method="post" class="border rounded p-2 mb-2" onsubmit="addCartItem(event,this)" action="@Url.Action("AddCartItem", "Order")">
         <strong>@item.ProductName</strong>
         <input type="hidden" name="productId" value="@item.ProductID" />
 
         <div class="row mt-2">
             <div class="col-4">
-                <img src="~/images/products/@item.Photo"
-                     class="img-fluid border" style="max-height:100px" />
+                <img src="~/images/products/@(string.IsNullOrEmpty(item.Photo) ? "nophoto.png" : item.Photo)"
+                     class="img-fluid border" style="max-height:100px" alt="" />
             </div>
             <div class="col-8">
                 <div class="row g-2">
                     <div class="col-7">
                         <label class="form-label mb-0">Giá</label>
                         <input class="form-control form-control-sm money-input"
-                               value="@item.Price" />
+                               name="price"
+                               value="@item.Price.ToString(System.Globalization.CultureInfo.InvariantCulture)" />
                     </div>
                     <div class="col-5">
                         <label class="form-label mb-0">SL</label>
                         <input type="number"
+                               name="quantity"
                                min="1"
                                value="1"
                                class="form-control form-control-sm" />
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-sm btn-primary mt-2 w-100">
-                    <i class="bi bi-cart-plus"></i>
-                    Thêm vào giỏ
-                </button>
+                @if (!item.IsSelling)
+                {
+                    <div class="small text-danger mt-1">Ngừng bán</div>
+                    <button type="button" class="btn btn-sm btn-secondary mt-2 w-100" disabled>
+                        <i class="bi bi-cart-plus"></i>
+                        Ngừng bán
+                    </button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-sm btn-primary mt-2 w-100">
+                        <i class="bi bi-cart-plus"></i>
+                        Thêm vào giỏ
+                    </button>
+                }
             </div>
         </div>
     </form>
 }
-<ul class="pagination justify-content-between mb-0">
-    <li class="page-item">
-        <a class="page-link">
-            <i class="bi bi-chevron-left"></i>
-        </a>
-    </li>
-    <li class="page-item">
-        <a class="page-link">
-            <i class="bi bi-chevron-right"></i>
-        </a>
-    </li>
-</ul>
+
+@if (Model.PageCount > 1)
+{
+    <ul class="pagination justify-content-center mb-0 mt-2">
+        @foreach (var p in Model.GetDisplayPages())
+        {
+            if (p.IsCurrent)
+            {
+                <li class="page-item active">
+                    <span class="page-link">@p.Page</span>
+                </li>
+            }
+            else if (p.IsEllipsis)
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">...</span>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" href="javascript:;"
+                       onclick="paginationSearch(event, document.getElementById('formSearch'), @p.Page)">
+                        @p.Page
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+}

@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using SV22T1020149.DataLayers.Interfaces;
 using SV22T1020149.Models.Common;
 using SV22T1020149.Models.Partner;
@@ -31,8 +31,8 @@ namespace SV22T1020149.DataLayers.SQLServer
             using (var connection = new SqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
-                var sql = @"INSERT INTO Customers(CustomerName, ContactName, Province, Address, Phone, Email, IsLocked)
-                            VALUES(@CustomerName, @ContactName, @Province, @Address, @Phone, @Email, @IsLocked);
+                var sql = @"INSERT INTO Customers(CustomerName, ContactName, Province, Address, Phone, Email, Password, IsLocked)
+                            VALUES(@CustomerName, @ContactName, @Province, @Address, @Phone, @Email, @Password, @IsLocked);
                             SELECT SCOPE_IDENTITY();";
                 var id = await connection.ExecuteScalarAsync<int>(sql, data);
                 return id;
@@ -146,6 +146,7 @@ namespace SV22T1020149.DataLayers.SQLServer
                                 Address = @Address, 
                                 Phone = @Phone, 
                                 Email = @Email,
+                                Password = @Password,
                                 IsLocked = @IsLocked
                             WHERE CustomerID = @CustomerID";
                 var rowsAffected = await connection.ExecuteAsync(sql, data);
@@ -170,6 +171,19 @@ namespace SV22T1020149.DataLayers.SQLServer
                                 SELECT 1";
                 var result = await connection.ExecuteScalarAsync<int>(sql, new { Email = email, CustomerID = id });
                 return result == 1;
+            }
+        }
+
+        /// <inheritdoc />
+        public async Task<Customer?> AuthorizeAsync(string email, string password)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                // IsLocked = 1: theo giao diện quản trị, khách "đang hoạt động"
+                var sql = @"SELECT * FROM Customers
+                            WHERE Email = @email AND Password = @password AND IsLocked = 1";
+                return await connection.QueryFirstOrDefaultAsync<Customer>(sql, new { email, password });
             }
         }
     }

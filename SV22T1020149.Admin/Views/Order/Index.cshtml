@@ -1,4 +1,5 @@
-﻿@{
+@model OrderSearchInput
+@{
     ViewBag.Title = "Quản lý Đơn hàng";
 }
 @section PageToolBar {
@@ -14,27 +15,28 @@
               action="~/Order/Search"
               data-target="searchResult"
               onsubmit="paginationSearch(event, this, 1)">
+            <input type="hidden" asp-for="PageSize" />
 
             <div class="row g-2">
                 <div class="col-md-3">
                     <label class="form-label">Trạng thái đơn hàng</label>
-                    <select name="Status" class="form-select">
-                        <option value="">-- Tất cả --</option>
-                        <option>Đang chờ duyệt</option>
-                        <option>Đã duyệt</option>
-                        <option>Đang giao</option>
-                        <option>Hoàn tất</option>
-                        <option>Bị hủy</option>
-                        <option>Bị từ chối</option>
+                    <select asp-for="Status" class="form-select">
+                        <option value="0">-- Tất cả --</option>
+                        <option value="@((int)OrderStatusEnum.New)">@OrderStatusEnum.New.GetDescription()</option>
+                        <option value="@((int)OrderStatusEnum.Accepted)">@OrderStatusEnum.Accepted.GetDescription()</option>
+                        <option value="@((int)OrderStatusEnum.Shipping)">@OrderStatusEnum.Shipping.GetDescription()</option>
+                        <option value="@((int)OrderStatusEnum.Completed)">@OrderStatusEnum.Completed.GetDescription()</option>
+                        <option value="@((int)OrderStatusEnum.Cancelled)">@OrderStatusEnum.Cancelled.GetDescription()</option>
+                        <option value="@((int)OrderStatusEnum.Rejected)">@OrderStatusEnum.Rejected.GetDescription()</option>
                     </select>
                 </div>
 
                 <div class="col-md-4">
                     <label class="form-label">Thời gian lập đơn hàng</label>
                     <div class="input-group">
-                        <input type="text" name="dateFrom" class="form-control date-picker" placeholder="Từ ngày..." />
+                        <input type="date" asp-for="DateFrom" class="form-control" />
                         <span class="input-group-text">-</span>
-                        <input type="text" name="dateTo" class="form-control date-picker" placeholder="...đến ngày" />
+                        <input type="date" asp-for="DateTo" class="form-control" />
                     </div>
                 </div>
 
@@ -42,11 +44,11 @@
                     <label class="form-label">Tên khách hàng</label>
                     <div class="input-group">
                         <input type="text"
-                               name="searchValue"
+                               asp-for="SearchValue"
                                class="form-control"
                                placeholder="Tên khách hàng..." autofocus />
 
-                        <button class="btn btn-info d-flex align-items-center">
+                        <button type="submit" class="btn btn-info d-flex align-items-center">
                             <i class="bi bi-search me-1"></i>
                         </button>
                     </div>
@@ -56,13 +58,13 @@
     </div>
 </div>
 
-<div id="searchResult">   
+<div id="searchResult">
 </div>
 
 @section Scripts {
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            paginationSearch(null, document.getElementById("formSearch"), 1);
+            paginationSearch(null, document.getElementById("formSearch"), @Model.Page);
         });
     </script>
 }

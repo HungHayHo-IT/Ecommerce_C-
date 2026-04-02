@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OrderDetailViewInfo>
+@model IEnumerable<OrderDetailViewInfo>
 @{
     Layout = null;
 
@@ -29,6 +29,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
+                    stt++;
                     sumPrice += item.TotalPrice;
                     <tr>
                         <td class="text-center">@stt</td>

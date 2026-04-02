@@ -1,4 +1,4 @@
-﻿using SV22T1020149.Models.Partner;
+using SV22T1020149.Models.Partner;
 
 namespace SV22T1020149.DataLayers.Interfaces
 {
@@ -17,5 +17,10 @@ namespace SV22T1020149.DataLayers.Interfaces
         /// </param>
         /// <returns></returns>
         Task<bool> ValidateEmailAsync(string email, int id = 0);
+
+        /// <summary>
+        /// Xác thực khách hàng đăng nhập Shop (email + mật khẩu, tài khoản đang hoạt động).
+        /// </summary>
+        Task<Customer?> AuthorizeAsync(string email, string password);
     }
 }

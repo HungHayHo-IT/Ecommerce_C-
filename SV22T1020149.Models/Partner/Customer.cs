@@ -1,4 +1,4 @@
-﻿namespace SV22T1020149.Models.Partner
+namespace SV22T1020149.Models.Partner
 {
     /// <summary>
     /// Khách hàng
@@ -33,6 +33,10 @@
         /// Email
         /// </summary>
         public string Email { get; set; } = string.Empty;
+        /// <summary>
+        /// Mật khẩu đăng nhập cửa hàng (khách đăng ký qua Shop); có thể null nếu tạo từ quản trị.
+        /// </summary>
+        public string? Password { get; set; }
         /// <summary>
         /// Khách hàng hiện có bị khóa hay không?
         /// </summary>

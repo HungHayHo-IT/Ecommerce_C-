@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using Microsoft.Data.SqlClient;
 using SV22T1020149.DataLayers.Interfaces;
 using SV22T1020149.Models.Common;
@@ -71,7 +71,8 @@ namespace SV22T1020149.DataLayers.SQLServer
             {
                 await connection.OpenAsync();
                 var sql = @"SELECT o.*, 
-                                   c.CustomerName, c.ContactName as CustomerContact, c.Phone as CustomerPhone, c.Email as CustomerEmail,
+                                   c.CustomerName, c.ContactName as CustomerContactName, c.Phone as CustomerPhone, c.Email as CustomerEmail,
+                                   c.Address as CustomerAddress,
                                    e.FullName as EmployeeName,
                                    s.ShipperName, s.Phone as ShipperPhone
                             FROM Orders as o
@@ -103,7 +104,13 @@ namespace SV22T1020149.DataLayers.SQLServer
                       AND (@SearchValue = '' OR c.CustomerName LIKE @SearchValue OR s.ShipperName LIKE @SearchValue);
 
                     SELECT o.*, 
-                           c.CustomerName, e.FullName as EmployeeName, s.ShipperName
+                           c.CustomerName, c.Phone as CustomerPhone,
+                           e.FullName as EmployeeName, s.ShipperName,
+                           ISNULL((
+                               SELECT SUM(CAST(od.Quantity AS DECIMAL(18,2)) * od.SalePrice)
+                               FROM OrderDetails od
+                               WHERE od.OrderID = o.OrderID
+                           ), 0) AS TotalAmount
                     FROM Orders as o
                     LEFT JOIN Customers as c ON o.CustomerID = c.CustomerID
                     LEFT JOIN Employees as e ON o.EmployeeID = e.EmployeeID

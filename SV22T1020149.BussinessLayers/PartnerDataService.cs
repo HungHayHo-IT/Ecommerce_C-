@@ -1,4 +1,4 @@
-﻿using SV22T1020149.BusinessLayers;
+using SV22T1020149.BusinessLayers;
 using SV22T1020149.DataLayers.Interfaces;
 using SV22T1020149.DataLayers.SQLServer;
 using SV22T1020149.Models.Common;
@@ -155,6 +155,13 @@ public static class PartnerDataService
     public static async Task<bool> UpdateCustomerAsync(Customer data)
     {
         //TODO: Kiểm tra dữ liệu hợp lệ
+        if (data.CustomerID != 0)
+        {
+            var existing = await customerDB.GetAsync(data.CustomerID);
+            if (existing != null && string.IsNullOrWhiteSpace(data.Password))
+                data.Password = existing.Password;
+        }
+
         return await customerDB.UpdateAsync(data);
     }
 
@@ -198,6 +205,17 @@ public static class PartnerDataService
     public static async Task<bool> ValidatelCustomerEmailAsync(string email, int customerID = 0)
     {
         return await customerDB.ValidateEmailAsync(email, customerID);
+    }
+
+    /// <summary>
+    /// Đăng nhập khách hàng trên cửa hàng (email và mật khẩu khớp bản ghi Customers).
+    /// </summary>
+    public static async Task<Customer?> AuthenticateCustomerAsync(string email, string password)
+    {
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            return null;
+
+        return await customerDB.AuthorizeAsync(email.Trim(), password);
     }
 
     #endregion
