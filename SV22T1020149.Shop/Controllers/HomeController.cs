@@ -1,32 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
-using SV22T1020149.Shop.Models;
-using System.Diagnostics;
+using SV22T1020149.BusinessLayers;
+using SV22T1020149.Models.Catalog;
 
 namespace SV22T1020149.Shop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public async Task<IActionResult> Index()
         {
-            _logger = logger;
+            var input = new ProductSearchInput { Page = 1, PageSize = 12, SearchValue = "", CategoryID = 0 };
+            var result = await CatalogDataService.ListProductsAsync(input);
+            return View(result.DataItems);
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
     }
 }

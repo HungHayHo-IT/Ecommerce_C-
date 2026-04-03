@@ -1,0 +1,27 @@
+@model SV22T1020149.Models.Common.PagedResult<SV22T1020149.Models.Sales.OrderViewInfo>
+@{
+    ViewData["Title"] = "L?ch s? ??n hàng";
+}
+
+@if (Model.DataItems.Count == 0)
+{
+    <div class="alert alert-info">Không có ??n hàng</div>
+}
+else
+{
+    <table class="table">
+        <thead><tr><th>Mã</th><th>Ngày</th><th>Tr?ng thái</th><th>T?ng</th><th></th></tr></thead>
+        <tbody>
+            @foreach (var o in Model.DataItems)
+            {
+                <tr>
+                    <td>@o.OrderID</td>
+                    <td>@o.OrderTime.ToString("dd/MM/yyyy")</td>
+                    <td>@o.Status</td>
+                    <td>@o.TotalAmount.ToString("N0")</td>
+                    <td><a class="btn btn-sm btn-primary" href="~/Order/Detail/@o.OrderID">Chi ti?t</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

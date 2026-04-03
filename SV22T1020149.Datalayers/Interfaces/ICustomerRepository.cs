@@ -22,5 +22,10 @@ namespace SV22T1020149.DataLayers.Interfaces
         /// Xác thực khách hàng đăng nhập Shop (email + mật khẩu, tài khoản đang hoạt động).
         /// </summary>
         Task<Customer?> AuthorizeAsync(string email, string password);
+
+        /// <summary>
+        /// Kiểm tra xem số điện thoại đã được sử dụng hay chưa
+        /// </summary>
+        Task<bool> ValidatePhoneAsync(string phone, int id = 0);
     }
 }

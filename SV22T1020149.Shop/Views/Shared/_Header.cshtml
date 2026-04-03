@@ -1,0 +1,54 @@
+﻿@using System.Security.Claims
+
+<header class="main-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <a href="#">NPNH <span>Shop</span></a>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="~/Home">Trang chủ</a></li>
+                <li><a href="~/Product">Sản phẩm</a></li>
+                <li><a href="#">Khuyến mãi</a></li>
+                <li><a href="#">Hướng dẫn</a></li>
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <form class="search-wrapper" asp-controller="Product" asp-action="List" method="get">
+                <i class="fas fa-search"></i>
+                <input name="SearchValue" type="text" placeholder="Tìm sản phẩm, mã, mô tả...">
+            </form>
+
+            <div class="user-icon user-menu">
+                @if (User.Identity?.IsAuthenticated ?? false)
+                {
+                    var name = User.FindFirst(ClaimTypes.Name)?.Value ?? User.Identity.Name ?? "Tài khoản";
+                    <a href="#" class="avatar" aria-haspopup="true">
+                        <i class="far fa-user"></i>
+                        <span>@name</span>
+                    </a>
+                    <div class="dropdown" role="menu">
+                        <a href="~/Account/Profile">Tài khoản</a>
+                        <a href="~/Account/Logout">Thoát</a>
+                    </div>
+                }
+                else
+                {
+                    <a href="#" class="avatar" aria-haspopup="true">
+                        <i class="far fa-user"></i>
+                    </a>
+                    <div class="dropdown" role="menu">
+                        <a href="~/Account/Login">Đăng nhập</a>
+                        <a href="~/Account/Register">Đăng ký</a>
+                    </div>
+                }
+            </div>
+
+            <div class="cart-icon">
+                <a href="~/Order/Cart" title="Giỏ hàng"><i class="fas fa-shopping-bag"></i></a>
+                <span class="cart-badge" id="cartCount">0</span>
+            </div>
+        </div>
+    </div>
+</header>

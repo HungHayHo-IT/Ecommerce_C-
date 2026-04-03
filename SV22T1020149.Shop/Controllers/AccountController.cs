@@ -1,141 +1,224 @@
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SV22T1020149.BusinessLayers;
 using SV22T1020149.Models.Partner;
+using System.Security.Claims;
 using SV22T1020149.Shop.Models;
+using SV22T1020149.Models.Security;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SV22T1020149.Shop.Controllers
 {
     public class AccountController : Controller
     {
-        private async Task LoadProvincesAsync()
+        public IActionResult Register()
         {
-            ViewBag.Provinces = await DictionaryDataService.ListProvincesAsync();
-        }
-
-        private static ClaimsPrincipal CreatePrincipal(Customer customer)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, customer.CustomerID.ToString()),
-                new Claim(ClaimTypes.Email, customer.Email),
-                new Claim(ClaimTypes.Name, customer.CustomerName),
-                new Claim("CustomerId", customer.CustomerID.ToString())
-            };
-            var id = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            return new ClaimsPrincipal(id);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult Login(string? returnUrl = null)
-        {
-            return View(new LoginViewModel { ReturnUrl = returnUrl });
+            // Keep existing HTML-only page; it posts to same URL via JS/fetch or form POST
+            return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> RegisterPost()
         {
-            if (!ModelState.IsValid)
-                return View(model);
-
-            var customer = await PartnerDataService.AuthenticateCustomerAsync(model.Email, model.Password);
-
-            if (customer == null)
+            // Read form values directly
+            var form = Request.Form;
+            var model = new RegisterViewModel
             {
-                ModelState.AddModelError(string.Empty, "Email hoặc mật khẩu không đúng, hoặc tài khoản chưa được kích hoạt.");
-                return View(model);
+                CustomerName = form["CustomerName"],
+                Province = form["Province"],
+                Address = form["Address"],
+                Phone = form["Phone"],
+                Email = form["Email"],
+                Password = form["Password"],
+                ConfirmPassword = form["ConfirmPassword"]
+            };
+
+            // basic server-side validation
+            if (string.IsNullOrWhiteSpace(model.CustomerName))
+                return BadRequest("Vui lòng nh?p h? tên");
+
+            if (string.IsNullOrWhiteSpace(model.Email))
+                return BadRequest("Vui lòng nh?p email");
+
+            if (model.Password != model.ConfirmPassword)
+                return BadRequest("M?t kh?u xác nh?n không kh?p");
+
+            if (model.Password.Length < 6)
+                return BadRequest("M?t kh?u ph?i có ít nh?t 6 ký t?");
+
+            // check duplicate email and phone
+            if (!await PartnerDataService.ValidatelCustomerEmailAsync(model.Email))
+                return BadRequest("Email ?ã ???c s? d?ng");
+
+            if (!await PartnerDataService.ValidatelCustomerPhoneAsync(model.Phone))
+                return BadRequest("S? ?i?n tho?i ?ã ???c s? d?ng");
+
+            var customer = new Customer
+            {
+                CustomerName = model.CustomerName,
+                ContactName = model.CustomerName,
+                Province = model.Province,
+                Address = model.Address,
+                Phone = model.Phone,
+                Email = model.Email,
+                IsLocked = true,
+                Password = PasswordHelper.HashPassword(model.Password)
+            };
+
+            try
+            {
+                var id = await PartnerDataService.AddCustomerAsync(customer);
+                if (id > 0)
+                {
+                    // if request is AJAX, return JSON; otherwise redirect
+                    if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                        return Json(new { success = true, id });
+
+                    return RedirectToAction("Login");
+                }
+            }
+            catch (Microsoft.Data.SqlClient.SqlException ex)
+            {
+                // return DB error message to client for easier debugging
+                return BadRequest("Database error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
-            var principal = CreatePrincipal(customer);
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                principal,
-                new AuthenticationProperties
-                {
-                    IsPersistent = model.RememberMe,
-                    AllowRefresh = true
-                });
+            return BadRequest("??ng ký không thành công");
+        }
 
-            if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
-                return Redirect(model.ReturnUrl);
+        public IActionResult Login(string returnUrl = "")
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(string email, string password, string returnUrl = "")
+        {
+            // allow login via email or phone
+            var user = await PartnerDataService.AuthenticateCustomerAsync(email, password);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Email ho?c m?t kh?u không ?úng");
+                return View();
+            }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.CustomerID.ToString()),
+                new Claim(ClaimTypes.Name, user.CustomerName ?? user.Email),
+                new Claim(ClaimTypes.Email, user.Email)
+            };
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                return Redirect(returnUrl);
 
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
-
         [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> Register()
+        public async Task<IActionResult> Profile()
         {
-            await LoadProvincesAsync();
-            return View(new RegisterViewModel());
+            // Kiểm tra đăng nhập
+            if (!User.Identity?.IsAuthenticated ?? true)
+                return RedirectToAction("Login");
+
+            // 1. Lấy ID chuẩn của .NET (Không cần GetUserData)
+            var id = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+
+            // 2. Lấy thông tin khách hàng từ DB
+            var customer = await PartnerDataService.GetCustomerAsync(id);
+            if (customer == null)
+                return RedirectToAction("Login");
+
+            // 3. Đưa dữ liệu sang ViewModel để hiển thị lên View
+            var model = new UserProfileViewModel()
+            {
+                CustomerID = customer.CustomerID,
+                CustomerName = customer.CustomerName ?? "",
+                Email = customer.Email ?? "",
+                Phone = customer.Phone ?? "",
+                Address = customer.Address ?? "",
+                Province = customer.Province ?? ""
+            };
+
+            return View(model);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [AllowAnonymous]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Profile(UserProfileViewModel model)
         {
-            await LoadProvincesAsync();
+            if (!User.Identity?.IsAuthenticated ?? true)
+                return RedirectToAction("Login");
 
             if (!ModelState.IsValid)
-                return View(model);
-
-            if (!await PartnerDataService.ValidatelCustomerEmailAsync(model.Email, 0))
             {
-                ModelState.AddModelError(nameof(model.Email), "Email này đã được sử dụng.");
                 return View(model);
             }
 
-            var customer = new Customer
-            {
-                CustomerID = 0,
-                CustomerName = model.CustomerName.Trim(),
-                ContactName = string.IsNullOrWhiteSpace(model.ContactName)
-                    ? model.CustomerName.Trim()
-                    : model.ContactName.Trim(),
-                Email = model.Email.Trim(),
-                Phone = model.Phone.Trim(),
-                Province = model.Province.Trim(),
-                Address = string.IsNullOrWhiteSpace(model.Address) ? "" : model.Address.Trim(),
-                Password = model.Password,
-                IsLocked = true
-            };
+            // 1. Lấy ID chuẩn
+            var id = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
 
-            var newId = await PartnerDataService.AddCustomerAsync(customer);
-            var created = await PartnerDataService.GetCustomerAsync(newId);
-            if (created == null)
+            // Lấy lại thông tin cũ để cập nhật
+            var currentCustomer = await PartnerDataService.GetCustomerAsync(id);
+            if (currentCustomer == null) return RedirectToAction("Login");
+
+            // 2. Xử lý đổi mật khẩu (Nếu người dùng có nhập Mật khẩu mới)
+            if (!string.IsNullOrEmpty(model.NewPassword))
             {
-                TempData["Message"] = "Đăng ký thành công. Vui lòng đăng nhập.";
-                return RedirectToAction(nameof(Login));
+                if (string.IsNullOrEmpty(model.OldPassword) || string.IsNullOrEmpty(model.ConfirmPassword))
+                {
+                    ModelState.AddModelError("", "Vui lòng nhập đầy đủ mật khẩu cũ và xác nhận mật khẩu mới.");
+                    return View(model);
+                }
+
+                // --- SỬA Ở ĐÂY: Dùng chính hàm Đăng nhập để verify mật khẩu cũ ---
+                var verifyOldPassword = await PartnerDataService.AuthenticateCustomerAsync(currentCustomer.Email, model.OldPassword);
+
+                if (verifyOldPassword == null) // Bằng null nghĩa là mật khẩu cũ sai
+                {
+                    ModelState.AddModelError("OldPassword", "Mật khẩu hiện tại không chính xác.");
+                    return View(model);
+                }
+
+                // Đổi mật khẩu mới trong đối tượng
+                currentCustomer.Password = SV22T1020149.Models.Security.PasswordHelper.HashPassword(model.NewPassword);
             }
 
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                CreatePrincipal(created),
-                new AuthenticationProperties { IsPersistent = false });
+            // 3. Cập nhật các thông tin cá nhân khác
+            currentCustomer.CustomerName = model.CustomerName;
+            currentCustomer.Phone = model.Phone;
+            currentCustomer.Address = model.Address;
+            currentCustomer.Province = model.Province;
 
-            TempData["Message"] = "Đăng ký thành công. Chào mừng bạn!";
-            return RedirectToAction("Index", "Home");
+            // 4. Lưu xuống Database
+            var ok = await PartnerDataService.UpdateCustomerAsync(currentCustomer);
+            if (ok)
+            {
+                TempData["SuccessMessage"] = "Cập nhật thông tin thành công!";
+                return RedirectToAction("Profile");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Có lỗi xảy ra khi cập nhật thông tin.");
+                return View(model);
+            }
         }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult AccessDenied()
+        public IActionResult ChangePassword()
         {
             return View();
         }
