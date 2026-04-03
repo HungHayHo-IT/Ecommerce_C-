@@ -215,7 +215,22 @@ public static class PartnerDataService
         if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
             return null;
 
+        // email can be email or phone number
         return await customerDB.AuthorizeAsync(email.Trim(), password);
+    }
+
+    /// <summary>
+    /// Kiểm tra xem số điện thoại của khách hàng có hợp lệ không
+    /// </summary>
+    /// <param name="phone">Số điện thoại cần kiểm tra</param>
+    /// <param name="customerID">
+    /// Bằng 0 nếu kiểm tra số điện thoại đối với khách hàng mới.
+    /// Khác 0 nếu kiểm tra số điện thoại của khách hàng có mã là <paramref name="customerID"/>
+    /// </param>
+    /// <returns></returns>
+    public static async Task<bool> ValidatelCustomerPhoneAsync(string phone, int customerID = 0)
+    {
+        return await customerDB.ValidatePhoneAsync(phone, customerID);
     }
 
     #endregion

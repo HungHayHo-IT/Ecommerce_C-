@@ -1,0 +1,272 @@
+﻿@model SV22T1020149.Shop.Models.UserProfileViewModel
+@{
+    ViewBag.Title = "Thông tin cá nhân";
+}
+
+<style>
+    body {
+        background-color: #f8fafc;
+    }
+
+    .dashboard-wrapper {
+        padding: 40px 0;
+    }
+
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 30px;
+    }
+
+    /* Sidebar CSS */
+    .sidebar-menu {
+        background: white;
+        border-radius: 16px;
+        padding: 20px 0;
+        list-style: none;
+        margin: 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            color: #475569;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+            .sidebar-menu li a:hover, .sidebar-menu li a.active {
+                background-color: #fff5f3;
+                color: #ff6b4a;
+                border-left-color: #ff6b4a;
+            }
+
+    .sidebar-divider {
+        height: 1px;
+        background-color: #e2e8f0;
+        margin: 10px 24px;
+    }
+
+    /* Main Content CSS */
+    .profile-card {
+        background: white;
+        border-radius: 16px;
+        padding: 32px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+
+        .section-header h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .section-header h3::before {
+                content: "";
+                display: block;
+                width: 4px;
+                height: 24px;
+                background-color: #ff6b4a;
+                border-radius: 4px;
+            }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #334155;
+        margin-bottom: 8px;
+    }
+
+        .form-group label i {
+            color: #ff6b4a;
+        }
+
+    .form-control, .form-select {
+        border-radius: 20px;
+        padding: 10px 16px;
+        border: 1px solid #e2e8f0;
+        font-size: 0.95rem;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #ff6b4a;
+            box-shadow: 0 0 0 0.2rem rgba(255, 107, 74, 0.15);
+        }
+
+        .form-control[readonly] {
+            background-color: #f8fafc;
+            color: #64748b;
+        }
+
+    .action-buttons {
+        display: flex;
+        gap: 16px;
+        margin-top: 30px;
+    }
+
+    .btn-save {
+        background-color: #ff6b4a;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 24px;
+        font-weight: 600;
+        transition: 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+        .btn-save:hover {
+            background-color: #e55a3b;
+            transform: translateY(-2px);
+        }
+
+    .divider {
+        height: 1px;
+        background-color: #e2e8f0;
+        margin: 30px 0;
+    }
+</style>
+
+<div class="container dashboard-wrapper">
+    <div class="dashboard-grid">
+        <aside>
+            <ul class="sidebar-menu">
+                <li><a href="~/Account/Profile" class="active"><i class="fas fa-user-circle"></i> Tài khoản của tôi</a></li>
+                <li><a href="~/Order/History"><i class="fas fa-shopping-bag"></i> Đơn mua hàng</a></li>
+                <li><a href="#"><i class="fas fa-ticket-alt"></i> Kho voucher</a></li>
+                <li><a href="#"><i class="fas fa-headset"></i> Liên hệ trợ giúp</a></li>
+
+                <div class="sidebar-divider"></div>
+                <li><a href="~/" style="color: #64748b;"><i class="fas fa-arrow-left"></i> Quay về trang chủ</a></li>
+            </ul>
+        </aside>
+
+        <div class="profile-card">
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show rounded-pill" role="alert">
+                    <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <form asp-action="Profile" asp-controller="Account" method="post" id="frmProfile">
+                <input type="hidden" asp-for="CustomerID" />
+
+                <div class="section-header">
+                    <h3><i class="fas fa-user-edit"></i> Thông tin cá nhân</h3>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Họ và tên</label>
+                        <input asp-for="CustomerName" class="form-control" />
+                        <span asp-validation-for="CustomerName" class="text-danger small"></span>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input asp-for="Email" class="form-control" readonly />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-phone-alt"></i> Số điện thoại</label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger small"></span>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-map-marker-alt"></i> Tỉnh/Thành</label>
+                        <input asp-for="Province" class="form-control" placeholder="Ví dụ: Hồ Chí Minh" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-home"></i> Địa chỉ chi tiết</label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger small"></span>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="section-header">
+                    <h3><i class="fas fa-key"></i> Đổi mật khẩu (Để trống nếu không đổi)</h3>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Mật khẩu cũ</label>
+                        <input asp-for="OldPassword" type="password" class="form-control" placeholder="Mật khẩu hiện tại..." />
+                        <span asp-validation-for="OldPassword" class="text-danger small"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Mật khẩu mới</label>
+                        <input asp-for="NewPassword" type="password" class="form-control" placeholder="Mật khẩu mới..." />
+                        <span asp-validation-for="NewPassword" class="text-danger small"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Xác nhận mật khẩu</label>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Nhập lại mật khẩu mới..." />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button type="submit" class="btn-save" id="btnSave" style="display: none;"><i class="fas fa-save"></i> Lưu thay đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Lấy nút Lưu và tất cả các ô input trong form (loại trừ các ô chỉ đọc như Email)
+            const btnSave = document.getElementById("btnSave");
+            const inputs = document.querySelectorAll("#frmProfile input:not([readonly])");
+
+            // Lắng nghe sự kiện người dùng gõ phím
+            inputs.forEach(input => {
+                input.addEventListener("input", function () {
+                    // Khi có thay đổi, lập tức hiện nút "Lưu thay đổi"
+                    btnSave.style.display = "flex";
+                });
+            });
+        });
+    </script>
+}

@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("54e385f5-e370-4ff7-8ba6-c914c8f06a3d")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("SV22T1020149.Admin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0244303f0f43e2d3b27eeae93fa0ebb475935cd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d959fa7e7eed1dd0d7a9a86e2698619fe06877e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SV22T1020149.Admin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SV22T1020149.Admin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

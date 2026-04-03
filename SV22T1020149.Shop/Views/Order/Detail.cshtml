@@ -1,0 +1,25 @@
+@model SV22T1020149.Models.Sales.OrderViewInfo
+@{
+    ViewData["Title"] = "Chi ti?t ??n hàng";
+    var details = ViewBag.OrderDetails as List<SV22T1020149.Models.Sales.OrderDetailViewInfo> ?? new List<SV22T1020149.Models.Sales.OrderDetailViewInfo>();
+}
+
+<h4>??n hàng #@Model.OrderID</h4>
+<p>Ngày: @Model.OrderTime</p>
+<p>Tr?ng thái: @Model.Status</p>
+
+<h5>Danh sách m?t hàng</h5>
+<table class="table">
+    <thead><tr><th>Tên</th><th>S? l??ng</th><th>Giá</th><th>Thành ti?n</th></tr></thead>
+    <tbody>
+        @foreach (var d in details)
+        {
+            <tr>
+                <td>@d.ProductName</td>
+                <td>@d.Quantity</td>
+                <td>@d.SalePrice.ToString("N0")</td>
+                <td>@d.TotalPrice.ToString("N0")</td>
+            </tr>
+        }
+    </tbody>
+</table>

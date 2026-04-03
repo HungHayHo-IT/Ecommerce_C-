@@ -1,79 +1,265 @@
-@model RegisterViewModel
-@{
-    ViewData["Title"] = "Đăng ký tài khoản";
-    var provinces = ViewBag.Provinces as List<Province> ?? new List<Province>();
+﻿@{
+    Layout = null;
 }
 
-<div class="row justify-content-center">
-    <div class="col-lg-7">
-        <div class="card shadow-sm mt-4 mb-4">
-            <div class="card-header bg-success text-white">
-                <h1 class="h5 mb-0">Tạo tài khoản khách hàng</h1>
-            </div>
-            <div class="card-body">
-                <form asp-action="Register" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản</title>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="CustomerName" class="form-label"></label>
-                            <input asp-for="CustomerName" class="form-control" />
-                            <span asp-validation-for="CustomerName" class="text-danger small"></span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="ContactName" class="form-label"></label>
-                            <input asp-for="ContactName" class="form-control" placeholder="Để trống nếu trùng họ tên" />
-                            <span asp-validation-for="ContactName" class="text-danger small"></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="Email" class="form-label"></label>
-                            <input asp-for="Email" class="form-control" autocomplete="email" />
-                            <span asp-validation-for="Email" class="text-danger small"></span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="Phone" class="form-label"></label>
-                            <input asp-for="Phone" class="form-control" autocomplete="tel" />
-                            <span asp-validation-for="Phone" class="text-danger small"></span>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label asp-for="Province" class="form-label"></label>
-                        <select asp-for="Province" class="form-select">
-                            <option value="">— Chọn tỉnh/thành —</option>
-                            @foreach (var p in provinces)
-                            {
-                                <option value="@p.ProvinceName">@p.ProvinceName</option>
-                            }
-                        </select>
-                        <span asp-validation-for="Province" class="text-danger small"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label asp-for="Address" class="form-label"></label>
-                        <textarea asp-for="Address" class="form-control" rows="2"></textarea>
-                        <span asp-validation-for="Address" class="text-danger small"></span>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="Password" class="form-label"></label>
-                            <input asp-for="Password" class="form-control" autocomplete="new-password" />
-                            <span asp-validation-for="Password" class="text-danger small"></span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="ConfirmPassword" class="form-label"></label>
-                            <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" />
-                            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-success">Đăng ký</button>
-                    <a asp-action="Login" class="btn btn-link">Đã có tài khoản? Đăng nhập</a>
-                </form>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .register-box {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            outline: none;
+            font-size: 15px;
+        }
+
+            input:focus, select:focus {
+                border-color: #ff6b4a;
+            }
+
+        .btn-register {
+            width: 100%;
+            padding: 14px;
+            background: #ff6b4a;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+            .btn-register:hover {
+                background: #e55a3b;
+            }
+
+        .error-message {
+            color: red;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 14px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .login-link a {
+            color: #ff6b4a;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+
+        @@media (max-width: 768px) {
+            .register-box {
+                margin: 20px;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-box">
+        <h2>Đăng ký tài khoản</h2>
+
+        <form id="registerForm" action="/Account/RegisterPost" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="error-message" id="serverError" style="display:none"></div>
+
+            <div class="form-group">
+                <label>Họ và tên</label>
+                <input type="text" id="CustomerName" name="CustomerName" placeholder="Nhập họ tên">
+                <div class="error-message" id="nameError">Vui lòng nhập họ tên</div>
             </div>
-        </div>
+
+          
+
+            <div class="form-group">
+                <label>Tỉnh / Thành</label>
+                <select id="Province" name="Province">
+                    <option value="">-- Chọn tỉnh/thành --</option>
+                    <option value="Hà Nội">Hà Nội</option>
+                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                    <option value="Đà Nẵng">Đà Nẵng</option>
+                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="Cần Thơ">Cần Thơ</option>
+                    <option value="Huế">Huế</option>
+                </select>
+                <div class="error-message" id="provinceError">Vui lòng chọn tỉnh/thành</div>
+            </div>
+
+            <div class="form-group">
+                <label>Số điện thoại</label>
+                <input type="text" id="Phone" name="Phone" placeholder="0912345678">
+                <div class="error-message" id="phoneError">Số điện thoại không hợp lệ</div>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="Email" name="Email" placeholder="example@gmail.com">
+                <div class="error-message" id="emailError">Email không hợp lệ</div>
+            </div>
+
+            <div class="form-group">
+                <label>Mật khẩu</label>
+                <input type="password" id="Password" name="Password" placeholder="******">
+                <div class="error-message" id="passwordError">Mật khẩu ít nhất 6 ký tự</div>
+            </div>
+
+            <div class="form-group">
+                <label>Xác nhận mật khẩu</label>
+                <input type="password" id="ConfirmPassword" name="ConfirmPassword" placeholder="******">
+                <div class="error-message" id="confirmError">Mật khẩu không khớp</div>
+            </div>
+
+            <button type="submit" class="btn-register">
+                Đăng ký
+            </button>
+
+            <div class="login-link">Bạn đã có tài khoản? <a href="/Account/Login">Đăng nhập ngay</a></div>
+        </form>
     </div>
-</div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    <script>
+        const form = document.getElementById("registerForm");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let isValid = true;
+
+            const name = document.getElementById("CustomerName");
+            const province = document.getElementById("Province");
+            const phone = document.getElementById("Phone");
+            const email = document.getElementById("Email");
+            const password = document.getElementById("Password");
+            const confirm = document.getElementById("ConfirmPassword");
+
+            document.querySelectorAll(".error-message").forEach(x => {
+                x.style.display = "none";
+            });
+
+            if (name.value.trim() === "") {
+                document.getElementById("nameError").style.display = "block";
+                isValid = false;
+            }
+
+            if (province && province.value === "") {
+                document.getElementById("provinceError").style.display = "block";
+                isValid = false;
+            }
+
+            if (!/^[0-9]{9,11}$/.test(phone.value)) {
+                document.getElementById("phoneError").style.display = "block";
+                isValid = false;
+            }
+
+            if (!/^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/.test(email.value)) {
+                document.getElementById("emailError").style.display = "block";
+                isValid = false;
+            }
+
+            if (password.value.length < 6) {
+                document.getElementById("passwordError").style.display = "block";
+                isValid = false;
+            }
+
+            if (password.value !== confirm.value) {
+                document.getElementById("confirmError").style.display = "block";
+                isValid = false;
+            }
+
+            if (isValid) {
+                // submit via AJAX so we can show server-side validation (duplicate email/phone)
+                const formData = new FormData(form);
+                // include antiforgery token already present in form
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                    credentials: 'same-origin'
+                })
+                .then(async response => {
+                    if (response.ok) {
+                        const data = await response.json().catch(() => null);
+                        // if JSON success
+                        if (data && data.success) {
+                            window.location = '/Account/Login';
+                            return;
+                        }
+                        // fallback redirect
+                        window.location = '/Account/Login';
+                    } else {
+                        const text = await response.text();
+                        const el = document.getElementById('serverError');
+                        el.innerText = text || 'Đăng ký không thành công';
+                        el.style.display = 'block';
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                })
+                .catch(err => {
+                    const el = document.getElementById('serverError');
+                    el.innerText = 'Lỗi kết nối tới máy chủ';
+                    el.style.display = 'block';
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

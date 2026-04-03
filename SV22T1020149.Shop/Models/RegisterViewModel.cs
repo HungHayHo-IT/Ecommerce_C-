@@ -4,44 +4,37 @@ namespace SV22T1020149.Shop.Models
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage = "Vui lòng nhập họ tên")]
-        [StringLength(100)]
-        [Display(Name = "Họ và tên")]
-        public string CustomerName { get; set; } = "";
+        [Required(ErrorMessage = "Vui l�ng nh?p h? v� t�n")]
+        [Display(Name = "H? v� t�n")]
+        public string CustomerName { get; set; } = string.Empty;
 
-        [StringLength(100)]
-        [Display(Name = "Tên giao dịch")]
-        public string? ContactName { get; set; }
+        [Required(ErrorMessage = "Vui l�ng ch?n t?nh/th�nh")]
+        [Display(Name = "T?nh / Th�nh")]
+        public string Province { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Vui lòng nhập email")]
-        [EmailAddress(ErrorMessage = "Email không hợp lệ")]
-        [StringLength(100)]
-        [Display(Name = "Email đăng nhập")]
-        public string Email { get; set; } = "";
-
-        [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
-        [StringLength(30)]
-        [Display(Name = "Điện thoại")]
-        public string Phone { get; set; } = "";
-
-        [Required(ErrorMessage = "Vui lòng chọn tỉnh/thành")]
-        [Display(Name = "Tỉnh / Thành phố")]
-        public string Province { get; set; } = "";
-
-        [StringLength(200)]
-        [Display(Name = "Địa chỉ")]
+        [Display(Name = "??a ch?")]
         public string? Address { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
-        [StringLength(100, MinimumLength = 6, ErrorMessage = "Mật khẩu tối thiểu 6 ký tự")]
-        [DataType(DataType.Password)]
-        [Display(Name = "Mật khẩu")]
-        public string Password { get; set; } = "";
+        [Required(ErrorMessage = "Vui l�ng nh?p s? ?i?n tho?i")]
+        [Phone(ErrorMessage = "S? ?i?n tho?i kh�ng h?p l?")]
+        [Display(Name = "S? ?i?n tho?i")]
+        public string Phone { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Vui lòng nhập lại mật khẩu")]
+        [Required(ErrorMessage = "Vui l�ng nh?p email")]
+        [EmailAddress(ErrorMessage = "Email kh�ng h?p l?")]
+        [Display(Name = "Email")]
+        public string Email { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Vui l�ng nh?p m?t kh?u")]
+        [StringLength(100, MinimumLength = 6, ErrorMessage = "M?t kh?u ph?i c� �t nh?t 6 k� t?")]
         [DataType(DataType.Password)]
-        [Compare(nameof(Password), ErrorMessage = "Mật khẩu xác nhận không khớp")]
-        [Display(Name = "Xác nhận mật khẩu")]
-        public string ConfirmPassword { get; set; } = "";
+        [Display(Name = "M?t kh?u")]
+        public string Password { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Vui l�ng x�c nh?n m?t kh?u")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "M?t kh?u x�c nh?n kh�ng kh?p")]
+        [Display(Name = "X�c nh?n m?t kh?u")]
+        public string ConfirmPassword { get; set; } = string.Empty;
     }
 }

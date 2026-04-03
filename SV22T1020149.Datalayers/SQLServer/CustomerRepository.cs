@@ -1,4 +1,5 @@
 using Dapper;
+using SV22T1020149.Models.Security;
 using SV22T1020149.DataLayers.Interfaces;
 using SV22T1020149.Models.Common;
 using SV22T1020149.Models.Partner;
@@ -163,13 +164,26 @@ namespace SV22T1020149.DataLayers.SQLServer
             using (var connection = new SqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
-                // Nếu ID = 0: Kiểm tra xem email đã tồn tại trong bảng chưa
-                // Nếu ID <> 0: Kiểm tra xem email đã tồn tại ở bản ghi khác (trừ bản ghi hiện tại) chưa
                 var sql = @"IF EXISTS (SELECT 1 FROM Customers WHERE Email = @Email AND CustomerID <> @CustomerID)
                                 SELECT 0
                             ELSE
                                 SELECT 1";
                 var result = await connection.ExecuteScalarAsync<int>(sql, new { Email = email, CustomerID = id });
+                return result == 1;
+            }
+        }
+
+        public async Task<bool> ValidatePhoneAsync(string phone, int id = 0)
+        {
+            if (string.IsNullOrWhiteSpace(phone)) return true;
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                var sql = @"IF EXISTS (SELECT 1 FROM Customers WHERE Phone = @Phone AND CustomerID <> @CustomerID)
+                                SELECT 0
+                            ELSE
+                                SELECT 1";
+                var result = await connection.ExecuteScalarAsync<int>(sql, new { Phone = phone, CustomerID = id });
                 return result == 1;
             }
         }
@@ -181,9 +195,15 @@ namespace SV22T1020149.DataLayers.SQLServer
             {
                 await connection.OpenAsync();
                 // IsLocked = 1: theo giao diện quản trị, khách "đang hoạt động"
+                // email parameter may be email or phone number
                 var sql = @"SELECT * FROM Customers
-                            WHERE Email = @email AND Password = @password AND IsLocked = 1";
-                return await connection.QueryFirstOrDefaultAsync<Customer>(sql, new { email, password });
+                            WHERE (Email = @identifier OR Phone = @identifier) AND IsLocked = 1";
+                var customer = await connection.QueryFirstOrDefaultAsync<Customer>(sql, new { identifier = email });
+                if (customer == null) return null;
+                // verify hashed password
+                if (PasswordHelper.VerifyPassword(password, customer.Password))
+                    return customer;
+                return null;
             }
         }
     }
