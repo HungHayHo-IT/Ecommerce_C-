@@ -1,0 +1,43 @@
+@model List<SV22T1020149.Models.Sales.OrderDetailViewInfo>
+@{
+    ViewData["Title"] = "Gi? hàng";
+}
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-info">Gi? hàng tr?ng</div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr><th>#</th><th>Tên</th><th>S? l??ng</th><th>Giá</th><th>Thành ti?n</th><th></th></tr>
+        </thead>
+        <tbody>
+            @foreach (var it in Model)
+            {
+                <tr>
+                    <td>@it.ProductID</td>
+                    <td>@it.ProductName</td>
+                    <td>@it.Quantity</td>
+                    <td>@it.SalePrice.ToString("N0")</td>
+                    <td>@it.TotalPrice.ToString("N0")</td>
+                    <td><button class="btn btn-sm btn-danger" onclick="remove(@it.ProductID)">Xóa</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-end">
+        <a class="btn btn-primary" href="~/Order/History">??t hàng</a>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        function remove(id) {
+            fetch('/Order/RemoveCartItem', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ productId: id }) })
+                .then(r => r.json()).then(j => location.reload());
+        }
+    </script>
+}

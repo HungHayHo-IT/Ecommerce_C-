@@ -1,8 +1,131 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<SV22T1020149.Models.Catalog.Product>
+@{
+    ViewData["Title"] = "Trang chủ thời trang cao cấp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="hero">
+        <div class="hero-content">
+            <div class="badge">🔥 Ưu đãi cuối mùa</div>
+            <h1>Thời trang đỉnh cao<br>Phong cách đẳng cấp</h1>
+            <p>Giảm giá lên đến 50% cho hàng ngàn sản phẩm. Miễn phí vận chuyển đơn hàng từ 500K.</p>
+            <div>
+                <a href="#" class="btn-primary">Mua ngay <i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="btn-outline-light">Khám phá BST</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="section-title">Danh mục nổi bật</h2>
+    <div class="categories-grid">
+        <a href="~/Product?category=1" class="category-card">
+            <img src="https://picsum.photos/id/1011/800/600" alt="Thời trang">
+            <h3>Thời trang</h3>
+            <p>Áo, đầm, phụ kiện</p>
+        </a>
+        <a href="~/Product?category=2" class="category-card">
+            <img src="https://picsum.photos/id/180/800/600" alt="Điện thoại">
+            <h3>Điện thoại</h3>
+            <p>Smartphone, ốp lưng</p>
+        </a>
+        <a href="~/Product?category=3" class="category-card">
+            <img src="https://picsum.photos/id/1040/800/600" alt="Laptop & PC">
+            <h3>Laptop & PC</h3>
+            <p>Máy tính, linh kiện</p>
+        </a>
+        <a href="~/Product?category=4" class="category-card">
+            <img src="https://picsum.photos/id/250/800/600" alt="Phụ kiện">
+            <h3>Phụ kiện</h3>
+            <p>Túi xách, đồng hồ</p>
+        </a>
+    </div>
+</div>
+
+<div class="container featured">
+    <h2 class="section-title">Sản phẩm bán chạy</h2>
+    <div class="products-grid">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model.Take(8))
+            {
+                <div class="product-card">
+                    <a href="~/Product/Detail/@item.ProductID" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="product-img">
+                            <img src="@(Url.Content($"~/images/products/{(string.IsNullOrEmpty(item.Photo) ? "nophoto.png" : item.Photo)}"))" alt="@item.ProductName">
+                        </div>
+                        <div class="product-info" style="padding-bottom: 0;">
+                            <div class="product-title">@item.ProductName</div>
+                            <div class="price">@item.Price.ToString("N0")đ</div>
+                        </div>
+                    </a>
+
+                    <div class="product-info" style="padding-top: 10px;">
+                        @if (!item.IsSelling)
+                        {
+                            <button class="add-to-cart" disabled>Ngừng bán</button>
+                        }
+                        else
+                        {
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ</button>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div>Không có sản phẩm nào.</div>
+        }
+    </div>
+</div>
+
+<div class="container">
+    <div class="banner-middle">
+        <div class="banner-text">
+            <h3>BST mới: Thu Đông 2025</h3>
+            <p>Lên xu hướng cùng thiết kế độc quyền, giảm 15% cho đơn đầu</p>
+        </div>
+        <a href="#" class="btn-secondary">Khám phá ngay →</a>
+    </div>
+</div>
+
+<div class="container featured mb-5">
+    <h2 class="section-title">Gợi ý dành riêng cho bạn</h2>
+    <div class="products-grid">
+        @if (Model != null && Model.Skip(8).Any())
+        {
+            foreach (var item in Model.Skip(8).Take(8))
+            {
+                <div class="product-card">
+                    <a href="~/Product/Detail/@item.ProductID" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="product-img">
+                            <img src="@(Url.Content($"~/images/products/{(string.IsNullOrEmpty(item.Photo) ? "nophoto.png" : item.Photo)}"))" alt="@item.ProductName">
+                        </div>
+                        <div class="product-info" style="padding-bottom: 0;">
+                            <div class="product-title">@item.ProductName</div>
+                            <div class="price">@item.Price.ToString("N0")đ</div>
+                        </div>
+                    </a>
+
+                    <div class="product-info" style="padding-top: 10px;">
+                        @if (!item.IsSelling)
+                        {
+                            <button class="add-to-cart" disabled>Ngừng bán</button>
+                        }
+                        else
+                        {
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ</button>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div>Không có đề xuất khác.</div>
+        }
+    </div>
 </div>

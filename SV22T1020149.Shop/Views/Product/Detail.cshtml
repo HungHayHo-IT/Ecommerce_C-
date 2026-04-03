@@ -1,0 +1,337 @@
+﻿@model SV22T1020149.Models.Catalog.Product
+@{
+    ViewData["Title"] = Model.ProductName;
+    // Lấy danh sách ảnh và thuộc tính từ Controller mà bạn đã chuẩn bị
+    var photos = ViewBag.Photos as List<SV22T1020149.Models.Catalog.ProductPhoto> ?? new List<SV22T1020149.Models.Catalog.ProductPhoto>();
+    var attrs = ViewBag.Attributes as List<SV22T1020149.Models.Catalog.ProductAttribute> ?? new List<SV22T1020149.Models.Catalog.ProductAttribute>();
+}
+
+<style>
+    body {
+        background-color: #f8fafc;
+    }
+
+    .detail-wrapper {
+        padding: 50px 0 80px;
+    }
+
+    .product-detail-card {
+        background: white;
+        border-radius: 28px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+
+    /* Hình ảnh sản phẩm */
+    .product-image-container {
+        border-radius: 20px;
+        overflow: hidden;
+        background: #f3f3f5;
+        position: relative;
+    }
+
+        .product-image-container img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+    /* Thông tin sản phẩm */
+    .product-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #1e293b;
+        margin-bottom: 16px;
+        line-height: 1.2;
+    }
+
+    .product-price {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #ff6b4a;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+    }
+
+    .product-unit {
+        font-size: 1rem;
+        color: #64748b;
+        font-weight: 500;
+    }
+
+    .product-desc {
+        font-size: 1.05rem;
+        color: #475569;
+        line-height: 1.7;
+        margin-bottom: 32px;
+    }
+
+    /* Khu vực chọn số lượng */
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+
+        .quantity-control label {
+            font-weight: 600;
+            color: #334155;
+            margin: 0;
+        }
+
+    .qty-group {
+        display: flex;
+        align-items: center;
+        background: #f1f5f9;
+        border-radius: 40px;
+        padding: 4px;
+    }
+
+    .qty-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background: white;
+        color: #1e293b;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+        .qty-btn:hover {
+            background: #ff6b4a;
+            color: white;
+        }
+
+    .qty-input {
+        width: 50px;
+        text-align: center;
+        border: none;
+        background: transparent;
+        font-weight: 700;
+        font-size: 1.1rem;
+        outline: none;
+    }
+
+    /* Nút thêm giỏ hàng */
+    .btn-add-cart {
+        background: #ff6b4a;
+        color: white;
+        border: none;
+        border-radius: 40px;
+        padding: 16px 32px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        width: 100%;
+        transition: 0.2s;
+        box-shadow: 0 8px 20px rgba(255,107,74,0.25);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+    }
+
+        .btn-add-cart:hover {
+            background: #e55a3b;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255,107,74,0.35);
+        }
+
+        .btn-add-cart:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+    /* Bảng thông số */
+    .attributes-section {
+        margin-top: 40px;
+    }
+
+        .attributes-section h4 {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff6b4a;
+            padding-left: 12px;
+        }
+
+    .attr-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+    .attr-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 20px;
+        border-bottom: 1px solid #e2e8f0;
+        background: white;
+    }
+
+        .attr-item:last-child {
+            border-bottom: none;
+        }
+
+        .attr-item:nth-child(odd) {
+            background: #f8fafc;
+        }
+
+    .attr-name {
+        color: #64748b;
+        font-weight: 500;
+        width: 40%;
+    }
+
+    .attr-val {
+        color: #1e293b;
+        font-weight: 600;
+        width: 60%;
+        text-align: right;
+    }
+</style>
+
+<div class="container detail-wrapper">
+    <a href="~/" class="text-decoration-none text-muted mb-4 d-inline-block fw-bold" style="transition: 0.2s;"><i class="fas fa-arrow-left me-2"></i> Tiếp tục mua sắm</a>
+
+    <div class="product-detail-card">
+        <div class="row g-5">
+
+            <div class="col-md-5">
+                @if (photos.Count > 1)
+                {
+                    <div id="productCarousel" class="carousel slide product-image-container" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @for (int i = 0; i < photos.Count; i++)
+                            {
+                                <div class="carousel-item @(i == 0 ? "active" : "")">
+                                    <img src="~/images/products/@(photos[i].Photo ?? "nophoto.png")" class="d-block w-100" />
+                                </div>
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" style="background-color: rgba(0,0,0,0.5); border-radius: 50%; padding: 20px;"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" style="background-color: rgba(0,0,0,0.5); border-radius: 50%; padding: 20px;"></span>
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="product-image-container">
+                        <img src="~/images/products/@(Model.Photo ?? "nophoto.png")" alt="@Model.ProductName" />
+                    </div>
+                }
+            </div>
+
+            <div class="col-md-7">
+                <h1 class="product-title">@Model.ProductName</h1>
+
+                <div class="product-price">
+                    @Model.Price.ToString("N0")đ
+                    <span class="product-unit">/ @Model.Unit</span>
+                </div>
+
+                <div class="product-desc">
+                    @(string.IsNullOrEmpty(Model.ProductDescription) ? "Chưa có mô tả cho sản phẩm này." : Model.ProductDescription)
+                </div>
+
+                <form id="frmAddToCart" onsubmit="addToCart(event, this)">
+                    <input type="hidden" name="productId" value="@Model.ProductID" />
+
+                    <div class="quantity-control">
+                        <label>Số lượng:</label>
+                        <div class="qty-group">
+                            <button type="button" class="qty-btn" onclick="decreaseQty()">-</button>
+                            <input type="number" id="inputQty" name="quantity" value="1" class="qty-input" min="1" readonly />
+                            <button type="button" class="qty-btn" onclick="increaseQty()">+</button>
+                        </div>
+                    </div>
+
+                    @if (Model.IsSelling)
+                    {
+                        <button type="submit" class="btn-add-cart">
+                            <i class="fas fa-cart-plus fs-5"></i> Thêm vào giỏ hàng
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn-add-cart" disabled>
+                            <i class="fas fa-ban fs-5"></i> Sản phẩm ngừng kinh doanh
+                        </button>
+                    }
+                </form>
+
+                @if (attrs.Count > 0)
+                {
+                    <div class="attributes-section">
+                        <h4>Thông số chi tiết</h4>
+                        <ul class="attr-list">
+                            @foreach (var a in attrs)
+                            {
+                                <li class="attr-item">
+                                    <span class="attr-name">@a.AttributeName</span>
+                                    <span class="attr-val">@a.AttributeValue</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Hàm tăng số lượng
+        function increaseQty() {
+            var input = document.getElementById('inputQty');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        // Hàm giảm số lượng (không cho nhỏ hơn 1)
+        function decreaseQty() {
+            var input = document.getElementById('inputQty');
+            var currentVal = parseInt(input.value);
+            if (currentVal > 1) {
+                input.value = currentVal - 1;
+            }
+        }
+
+        // Hàm gọi API thêm vào giỏ hàng (Giữ nguyên logic gốc của bạn)
+        function addToCart(e, form) {
+            e.preventDefault();
+            var fd = new FormData(form);
+            fetch('/Order/AddCartItem', { method: 'POST', body: fd })
+                .then(r => r.json())
+                .then(j => {
+                    if (j.code === 0) {
+                        alert(j.message);
+                    } else {
+                        // Hiển thị thông báo đẹp hơn thay vì alert (tùy chọn)
+                        alert('Đã thêm ' + document.getElementById('inputQty').value + ' sản phẩm vào giỏ hàng thành công!');
+
+                        // Cập nhật số lượng trên icon giỏ hàng ở header
+                        fetch('/Order/CartCount').then(r => r.json()).then(d => {
+                            var cartBadge = document.getElementById('cartCount');
+                            if(cartBadge) cartBadge.innerText = d.count || 0;
+                        });
+                    }
+                })
+                .catch(err => alert('Có lỗi xảy ra, vui lòng thử lại!'));
+        }
+    </script>
+}
