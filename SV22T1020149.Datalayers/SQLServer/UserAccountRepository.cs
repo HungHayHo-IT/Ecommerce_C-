@@ -68,5 +68,45 @@ namespace SV22T1020149.DataLayers.SQLServer
                 return rowsAffected > 0;
             }
         }
+
+        /// <summary>
+        /// Đăng ký tài khoản mới (Thêm mới một nhân viên/người dùng)
+        /// </summary>
+        public async Task<bool> RegisterAsync(UserAccount data, string password)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                var sql = @"INSERT INTO Employees (FullName, Email, Password, Photo, RoleNames, IsWorking)
+                            VALUES (@DisplayName, @Email, @Password, @Photo, @RoleNames, 1)";
+
+                var parameters = new
+                {
+                    DisplayName = data.DisplayName,
+                    Email = data.Email,
+                    Password = password, // Mật khẩu đã được băm MD5 từ Controller
+                    Photo = string.IsNullOrEmpty(data.Photo) ? "user.png" : data.Photo,
+                    RoleNames = "customer" // Mặc định gán quyền khách hàng cho người đăng ký mới
+                };
+
+                var rowsAffected = await connection.ExecuteAsync(sql, parameters);
+                return rowsAffected > 0;
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra xem Email đã tồn tại trong hệ thống chưa
+        /// </summary>
+        public async Task<bool> CheckEmailExistsAsync(string email)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                var sql = "SELECT COUNT(*) FROM Employees WHERE Email = @email";
+
+                var count = await connection.ExecuteScalarAsync<int>(sql, new { email = email });
+                return count > 0;
+            }
+        }
     }
 }

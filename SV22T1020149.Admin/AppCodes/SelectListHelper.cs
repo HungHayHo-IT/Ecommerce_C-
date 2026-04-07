@@ -46,7 +46,7 @@ namespace SV22T1020149.Admin
             {
                 new SelectListItem() { Value = "0", Text = "-- Loại hàng --"}
             };
-            var input = new PaginationSearchInput() { Page = 1, PageSize = 0, SearchValue = "" };
+            var input = new PaginationSearchInput() { Page = 1, PageSize = 100, SearchValue = "" };
             var result = await CatalogDataService.ListCategoriesAsync(input);
             foreach (var item in result.DataItems)
             {
@@ -69,7 +69,7 @@ namespace SV22T1020149.Admin
             {
                 new SelectListItem() { Value = "0", Text = "-- Nhà cung cấp --"}
             };
-            var input = new PaginationSearchInput() { Page = 1, PageSize = 0, SearchValue = "" };
+            var input = new PaginationSearchInput() { Page = 1, PageSize = 100, SearchValue = "" };
             var result = await PartnerDataService.ListSuppliersAsync(input);
             foreach (var item in result.DataItems)
             {
@@ -79,6 +79,71 @@ namespace SV22T1020149.Admin
                     Text = item.SupplierName
                 });
             }
+            return list;
+        }
+        /// <summary>
+        /// Danh sách khách hàng
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<SelectListItem>> Customers()
+        {
+            var list = new List<SelectListItem>()
+    {
+        new SelectListItem() { Value = ""}
+    };
+
+            // Tăng PageSize lên thật lớn để lấy "hết" (ví dụ 5000)
+            var input = new PaginationSearchInput()
+            {
+                Page = 1,
+                PageSize = 5000,
+                SearchValue = ""
+            };
+
+            var result = await PartnerDataService.ListCustomersAsync(input);
+
+            foreach (var item in result.DataItems)
+            {
+                list.Add(new SelectListItem()
+                {
+                    Value = item.CustomerID.ToString(),
+                    Text = item.CustomerName
+                });
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// Danh sách người giao hàng (Shipper)
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<SelectListItem>> Shippers()
+        {
+            var list = new List<SelectListItem>()
+    {
+        new SelectListItem() { Value = "0", Text = "-- Chọn người giao hàng --"}
+    };
+
+            // Tạo input tìm kiếm để lấy danh sách (giả sử lấy tối đa 1000 người)
+            var input = new PaginationSearchInput()
+            {
+                Page = 1,
+                PageSize = 1000,
+                SearchValue = ""
+            };
+
+            // Gọi Service từ PartnerDataService (giống cách gọi Suppliers/Customers)
+            var result = await PartnerDataService.ListShippersAsync(input);
+
+            foreach (var item in result.DataItems)
+            {
+                list.Add(new SelectListItem()
+                {
+                    Value = item.ShipperID.ToString(),
+                    Text = item.ShipperName
+                });
+            }
+
             return list;
         }
 

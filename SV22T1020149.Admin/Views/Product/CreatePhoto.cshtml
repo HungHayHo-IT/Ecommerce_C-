@@ -1,0 +1,91 @@
+﻿@model ProductPhoto
+@{
+    // Tự động xác định chế độ Thêm hay Sửa dựa trên PhotoID
+    bool isEdit = Model.PhotoID > 0;
+    ViewBag.Title = isEdit ? "Chỉnh sửa ảnh" : "Bổ sung ảnh mặt hàng";
+}
+
+<div class="container-fluid pt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold @(isEdit ? "text-info" : "text-success")">
+                        <i class="bi @(isEdit ? "bi-pencil-square" : "bi-camera") me-2"></i>
+                        @ViewBag.Title
+                    </h5>
+                    @* Hiển thị tên mặt hàng động từ ViewBag *@
+                    <small class="text-muted">Mặt hàng: <strong>@ViewBag.ProductName</strong></small>
+                </div>
+                <div class="card-body p-4">
+                    @* Action SavePhoto sẽ xử lý cả Insert và Update *@
+                    <form action="~/Product/SavePhoto" method="post" enctype="multipart/form-data">
+                        @* Các trường ẩn để định danh dữ liệu *@
+                        <input type="hidden" name="PhotoID" value="@Model.PhotoID" />
+                        <input type="hidden" name="ProductID" value="@Model.ProductID" />
+                        @* Giữ lại tên file cũ nếu là chỉnh sửa mà không upload ảnh mới *@
+                        <input type="hidden" name="Photo" value="@Model.Photo" />
+
+                        <div class="row">
+                            <div class="col-md-5 text-center mb-3">
+                                <label class="form-label fw-bold small d-block">Xem trước:</label>
+                                <div class="border rounded p-2 bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                    @{
+                                        // Logic hiển thị ảnh cũ hoặc ảnh mặc định
+                                        string currentPhoto = string.IsNullOrEmpty(Model.Photo)
+                                        ? "https://via.placeholder.com/200x200?text=No+Image"
+                                        : Url.Content("~/images/products/" + Model.Photo);
+                                    }
+                                    <img id="uploadPreview" src="@currentPhoto"
+                                         class="img-fluid rounded shadow-sm" style="max-height: 100%;" />
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold small">Chọn file ảnh:</label>
+                                    @* Nếu là Sửa thì không bắt buộc (required) chọn lại file *@
+                                    <input type="file" name="uploadPhoto" class="form-control" accept="image/*"
+                                           @(isEdit ? "" : "required")
+                                           onchange="document.getElementById('uploadPreview').src = window.URL.createObjectURL(this.files[0])">
+                                    <div class="form-text small italic">Hỗ trợ: JPG, PNG, WEBP.</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold small">Mô tả ảnh:</label>
+                                    <input type="text" name="Description" class="form-control"
+                                           placeholder="Ví dụ: Mặt sau, Tem nhãn..."
+                                           value="@Model.Description" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold small">Thứ tự hiển thị:</label>
+                                    <input type="number" name="DisplayOrder" class="form-control w-50"
+                                           value="@Model.DisplayOrder" min="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 mt-2">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="IsHidden" id="isHidden"
+                                       value="true" @(Model.IsHidden ? "checked" : "")>
+                                <label class="form-check-label small fw-bold" for="isHidden">Tạm ẩn ảnh này</label>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-end gap-2">
+                            <button type="submit" class="btn btn-primary px-4">
+                                <i class="bi bi-cloud-arrow-up me-1"></i>
+                                @(isEdit ? "Cập nhật ảnh" : "Tải lên")
+                            </button>
+                            @* Hủy bỏ quay lại trang Edit sản phẩm để xem danh sách ảnh *@
+                            <a href="~/Product/Edit/@Model.ProductID" class="btn btn-outline-secondary">Hủy bỏ</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,180 @@
+﻿@model SV22T1020149.Models.Common.PagedResult<SV22T1020149.Models.Catalog.Product>
+
+@{
+    ViewBag.Title = "Danh sách Sản Phẩm";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+
+            <div class="card shadow-sm mb-4 border-0">
+                <div class="card-header bg-primary text-white text-uppercase font-weight-bold" style="border-radius: 8px 8px 0 0;">
+                    <i class="fa fa-filter mr-2"></i> Bộ Lọc
+                </div>
+                <div class="card-body bg-light rounded-bottom">
+                    <form action="~/Product" method="get">
+                        <input type="hidden" name="categoryId" value="@ViewBag.CategoryId" />
+
+                        <div class="mb-3">
+                            <label class="font-weight-bold mb-1">Tên sản phẩm</label>
+                            <input type="text" class="form-control" name="searchValue" value="@ViewBag.SearchValue" placeholder="Nhập từ khóa...">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="font-weight-bold mb-1">Khoảng giá</label>
+                            <div class="d-flex align-items-center">
+                                <input type="number" class="form-control" name="minPrice"
+                                       value="@(ViewBag.MinPrice == 0 ? "" : ViewBag.MinPrice)" placeholder="Từ...">
+                                <span class="mx-2">-</span>
+                                <input type="number" class="form-control" name="maxPrice"
+                                       value="@(ViewBag.MaxPrice == 0 ? "" : ViewBag.MaxPrice)" placeholder="Đến...">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="font-weight-bold mb-1">Sắp xếp theo</label>
+                            <select class="form-control" name="sortOrder">
+                                @if (ViewBag.SortOrder == "")
+                                {
+                                    <option value="" selected>-- Tên A-Z (Mặc định) --</option>
+                                }
+                                else
+                                {
+                                    <option value="">-- Tên A-Z (Mặc định) --</option>
+                                }
+                                @if (ViewBag.SortOrder == "price_asc")
+                                {
+                                    <option value="price_asc" selected>Giá tăng dần</option>
+                                }
+                                else
+                                {
+                                    <option value="price_asc">Giá tăng dần</option>
+                                }
+                                @if (ViewBag.SortOrder == "price_desc")
+                                {
+                                    <option value="price_desc" selected>Giá giảm dần</option>
+                                }
+                                else
+                                {
+                                    <option value="price_desc">Giá giảm dần</option>
+                                }
+                            </select>
+                        </div>
+
+                        <button class="btn btn-primary w-100 mt-2 font-weight-bold" type="submit" style="border-radius: 8px;">
+                            <i class="fa fa-search"></i> Áp dụng
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <h5 class="font-weight-bold mb-3 text-uppercase border-bottom pb-2">
+                    <i class="fa fa-list mr-1"></i> Danh mục
+                </h5>
+                <div class="d-flex flex-column">
+                    <a href="~/Product?categoryId=0&searchValue=@ViewBag.SearchValue&minPrice=@ViewBag.MinPrice&maxPrice=@ViewBag.MaxPrice&sortOrder=@ViewBag.SortOrder"
+                       class="btn @(ViewBag.CategoryId == 0 ? "btn-primary" : "bg-white text-dark border") mb-2 shadow-sm transition-hover"
+                       style="text-align: left; border-radius: 8px; font-weight: 500;">
+                        Tất cả sản phẩm
+                    </a>
+
+                    @if (ViewBag.Categories != null)
+                    {
+                        foreach (var cat in ViewBag.Categories)
+                        {
+                            <a href="~/Product?categoryId=@cat.CategoryID&searchValue=@ViewBag.SearchValue&minPrice=@ViewBag.MinPrice&maxPrice=@ViewBag.MaxPrice&sortOrder=@ViewBag.SortOrder"
+                               class="btn @(ViewBag.CategoryId == cat.CategoryID ? "btn-primary" : "bg-white text-dark border") mb-2 shadow-sm transition-hover"
+                               style="text-align: left; border-radius: 8px; font-weight: 500;">
+                                @cat.CategoryName
+                            </a>
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-9 col-md-8">
+            <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+                <h4 class="mb-0">Sản phẩm hiện có (@Model.RowCount)</h4>
+            </div>
+
+            <div class="row g-4">
+                @if (Model.DataItems == null || !Model.DataItems.Any())
+                {
+                    <div class="col-12 text-center text-muted my-5">
+                        <i class="fa fa-box-open fa-3x mb-3"></i>
+                        <h5>Không tìm thấy sản phẩm nào phù hợp với bộ lọc!</h5>
+                    </div>
+                }
+                else
+                {
+                    foreach (var item in Model.DataItems)
+                    {
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-4">
+                            <partial name="_ProductCard" model="item" />
+                        </div>
+                    }
+                }
+            </div>
+
+            @if (Model.PageCount > 1)
+            {
+                <nav aria-label="Page navigation" class="mt-4">
+                    <ul class="pagination justify-content-center">
+
+                        <li class="page-item @(!Model.HasPreviousPage ? "disabled" : "")">
+                            <a class="page-link" href="~/Product?categoryId=@ViewBag.CategoryId&searchValue=@ViewBag.SearchValue&minPrice=@ViewBag.MinPrice&maxPrice=@ViewBag.MaxPrice&page=@(Model.Page - 1)">
+                                Trước
+                            </a>
+                        </li>
+
+                        @{
+                            int n = 2;
+                            int startPage = Math.Max(1, Model.Page - n);
+                            int endPage = Math.Min(Model.PageCount, Model.Page + n);
+                        }
+
+                        @if (startPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="~/Product?categoryId=@ViewBag.CategoryId&searchValue=@ViewBag.SearchValue&minPrice=@ViewBag.MinPrice&maxPrice=@ViewBag.MaxPrice&page=1">1</a>
+                            </li>
+                            if (startPage > 2)
+                            {
+                                <li class="page-item disabled"><span class="page-link border-0 text-muted">...</span></li>
+                            }
+                        }
+
+                        @for (int p = startPage; p <= endPage; p++)
+                        {
+                            <li class="page-item @(p == Model.Page ? "active" : "")">
+                                <a class="page-link" href="~/Product?categoryId=@ViewBag.CategoryId&searchValue=@ViewBag.SearchValue&minPrice=@ViewBag.MinPrice&maxPrice=@ViewBag.MaxPrice&page=@p">@p</a>
+                            </li>
+                        }
+
+                        @if (endPage < Model.PageCount)
+                        {
+                            if (endPage < Model.PageCount - 1)
+                            {
+                                <li class="page-item disabled"><span class="page-link border-0 text-muted">...</span></li>
+                            }
+                            <li class="page-item">
+                                <a class="page-link" href="~/Product?categoryId=@ViewBag.CategoryId&searchValue=@ViewBag.SearchValue&minPrice=@ViewBag.MinPrice&maxPrice=@ViewBag.MaxPrice&page=@Model.PageCount">@Model.PageCount</a>
+                            </li>
+                        }
+
+                        <li class="page-item @(!Model.HasNextPage ? "disabled" : "")">
+                            <a class="page-link" href="~/Product?categoryId=@ViewBag.CategoryId&searchValue=@ViewBag.SearchValue&minPrice=@ViewBag.MinPrice&maxPrice=@ViewBag.MaxPrice&page=@(Model.Page + 1)">
+                                Sau
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            }
+        </div>
+    </div>
+</div>

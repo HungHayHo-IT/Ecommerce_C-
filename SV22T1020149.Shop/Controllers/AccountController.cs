@@ -14,14 +14,14 @@ namespace SV22T1020149.Shop.Controllers
     {
         public IActionResult Register()
         {
-            // Keep existing HTML-only page; it posts to same URL via JS/fetch or form POST
+            
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> RegisterPost()
         {
-            // Read form values directly
+            
             var form = Request.Form;
             var model = new RegisterViewModel
             {
@@ -34,25 +34,25 @@ namespace SV22T1020149.Shop.Controllers
                 ConfirmPassword = form["ConfirmPassword"]
             };
 
-            // basic server-side validation
+            
             if (string.IsNullOrWhiteSpace(model.CustomerName))
-                return BadRequest("Vui lòng nh?p h? tên");
+                return BadRequest("Vui lòng nhập họ tên");
 
             if (string.IsNullOrWhiteSpace(model.Email))
-                return BadRequest("Vui lòng nh?p email");
+                return BadRequest("Vui lòng nhập email");
 
             if (model.Password != model.ConfirmPassword)
-                return BadRequest("M?t kh?u xác nh?n không kh?p");
+                return BadRequest("Mật khẩu xác nhận không khớp");
 
             if (model.Password.Length < 6)
-                return BadRequest("M?t kh?u ph?i có ít nh?t 6 ký t?");
+                return BadRequest("Mật khẩu phải ít nhất 6 ký tự");
 
-            // check duplicate email and phone
+            
             if (!await PartnerDataService.ValidatelCustomerEmailAsync(model.Email))
-                return BadRequest("Email ?ã ???c s? d?ng");
+                return BadRequest("Email Đã sử dụng");
 
             if (!await PartnerDataService.ValidatelCustomerPhoneAsync(model.Phone))
-                return BadRequest("S? ?i?n tho?i ?ã ???c s? d?ng");
+                return BadRequest("Số điện thoại đã sử dụng ");
 
             var customer = new Customer
             {
@@ -71,7 +71,7 @@ namespace SV22T1020149.Shop.Controllers
                 var id = await PartnerDataService.AddCustomerAsync(customer);
                 if (id > 0)
                 {
-                    // if request is AJAX, return JSON; otherwise redirect
+                    
                     if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                         return Json(new { success = true, id });
 
@@ -80,7 +80,7 @@ namespace SV22T1020149.Shop.Controllers
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
-                // return DB error message to client for easier debugging
+                
                 return BadRequest("Database error: " + ex.Message);
             }
             catch (Exception ex)
@@ -88,7 +88,7 @@ namespace SV22T1020149.Shop.Controllers
                 return BadRequest(ex.Message);
             }
 
-            return BadRequest("??ng ký không thành công");
+            return BadRequest("Đăng ký không thành công");
         }
 
         public IActionResult Login(string returnUrl = "")
@@ -100,11 +100,11 @@ namespace SV22T1020149.Shop.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password, string returnUrl = "")
         {
-            // allow login via email or phone
+           
             var user = await PartnerDataService.AuthenticateCustomerAsync(email, password);
             if (user == null)
             {
-                ModelState.AddModelError("", "Email ho?c m?t kh?u không ?úng");
+                ModelState.AddModelError("", "Email hoặc mật khẩu không đúng");
                 return View();
             }
 

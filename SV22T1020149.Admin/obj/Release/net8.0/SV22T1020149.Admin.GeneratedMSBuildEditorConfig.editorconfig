@@ -28,6 +28,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Windows/source/repos/SV22T1020149/SV22T1020149.Admin/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Windows/source/repos/SV22T1020149/SV22T1020149.Admin/Views/Category/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -172,6 +176,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcVXBkYXRlQ2FydEl0ZW0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Windows/source/repos/SV22T1020149/SV22T1020149.Admin/Views/Product/Attribute.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxBdHRyaWJ1dGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows/source/repos/SV22T1020149/SV22T1020149.Admin/Views/Product/CreateAttributes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxDcmVhdGVBdHRyaWJ1dGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows/source/repos/SV22T1020149/SV22T1020149.Admin/Views/Product/CreatePhoto.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxDcmVhdGVQaG90by5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Windows/source/repos/SV22T1020149/SV22T1020149.Admin/Views/Product/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -206,6 +222,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Windows/source/repos/SV22T1020149/SV22T1020149.Admin/Views/Product/ListPhotos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxMaXN0UGhvdG9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows/source/repos/SV22T1020149/SV22T1020149.Admin/Views/Product/Photo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxQaG90by5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows/source/repos/SV22T1020149/SV22T1020149.Admin/Views/Product/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxTZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Windows/source/repos/SV22T1020149/SV22T1020149.Admin/Views/Shared/Components/OrderSearch/Default.cshtml]

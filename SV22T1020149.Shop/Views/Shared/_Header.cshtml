@@ -15,10 +15,7 @@
             </ul>
         </nav>
         <div class="header-actions">
-            <form class="search-wrapper" asp-controller="Product" asp-action="List" method="get">
-                <i class="fas fa-search"></i>
-                <input name="SearchValue" type="text" placeholder="Tìm sản phẩm, mã, mô tả...">
-            </form>
+            
 
             <div class="user-icon user-menu">
                 @if (User.Identity?.IsAuthenticated ?? false)

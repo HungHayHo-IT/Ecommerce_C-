@@ -1,27 +1,164 @@
-@model SV22T1020149.Models.Common.PagedResult<SV22T1020149.Models.Sales.OrderViewInfo>
+﻿@model SV22T1020149.Models.Common.PagedResult<SV22T1020149.Models.Sales.OrderViewInfo>
 @{
-    ViewData["Title"] = "L?ch s? ??n h�ng";
+    ViewBag.Title = "Lịch sử đơn hàng";
 }
 
-@if (Model.DataItems.Count == 0)
-{
-    <div class="alert alert-info">Kh�ng c� ??n h�ng</div>
-}
-else
-{
-    <table class="table">
-        <thead><tr><th>M�</th><th>Ng�y</th><th>Tr?ng th�i</th><th>T?ng</th><th></th></tr></thead>
-        <tbody>
-            @foreach (var o in Model.DataItems)
-            {
-                <tr>
-                    <td>@o.OrderID</td>
-                    <td>@o.OrderTime.ToString("dd/MM/yyyy")</td>
-                    <td>@o.Status</td>
-                    <td>@o.TotalAmount.ToString("N0")</td>
-                    <td><a class="btn btn-sm btn-primary" href="~/Order/Detail/@o.OrderID">Chi ti?t</a></td>
-                </tr>
+<div class="container mt-4 mb-5">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h4 class="fw-bold text-uppercase border-bottom pb-2 mb-0">Quản lý đơn hàng</h4>
+        <a href="~/Product" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+            <i class="fa fa-shopping-cart me-1"></i> Tiếp tục mua sắm
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="text-center" style="width: 80px;">Mã ĐH</th>
+                            <th>Ngày đặt hàng</th>
+                            <th>Ngày hoàn thành</th>
+                            <th class="text-center">Trạng thái</th>
+                            <th class="text-center">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.DataItems == null || !Model.DataItems.Any())
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center py-5">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" style="width: 100px; opacity: 0.5;" class="mb-3">
+                                    <h6 class="text-muted">Bạn chưa có đơn hàng nào.</h6>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.DataItems.OrderByDescending(x => x.OrderTime))
+                            {
+                                <tr>
+                                    <td class="text-center fw-bold">#@item.OrderID</td>
+
+                                    <td>
+                                        <i class="fa fa-calendar-alt text-muted me-1"></i>
+                                        @item.OrderTime.ToString("dd/MM/yyyy HH:mm")
+                                    </td>
+
+                                    <td>
+                                        @if (item.FinishedTime.HasValue)
+                                        {
+                                            <span class="text-success"><i class="fa fa-check-circle me-1"></i> @item.FinishedTime.Value.ToString("dd/MM/yyyy HH:mm")</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted fst-italic">Chưa hoàn thành</span>
+                                        }
+                                    </td>
+
+                                    <td class="text-center">
+                                        @if (item.Status == SV22T1020149.Models.Sales.OrderStatusEnum.New) // 1
+                                        {
+                                            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">Chờ xác nhận</span>
+                                        }
+                                        else if (item.Status == SV22T1020149.Models.Sales.OrderStatusEnum.Accepted) // 2
+                                        {
+                                            <span class="badge bg-info text-dark px-3 py-2 rounded-pill">Đã chấp nhận</span>
+                                        }
+                                        else if (item.Status == SV22T1020149.Models.Sales.OrderStatusEnum.Shipping) // 3
+                                        {
+                                            <span class="badge bg-primary px-3 py-2 rounded-pill"><i class="fa fa-truck me-1"></i> Đang giao hàng</span>
+                                        }
+                                        else if (item.Status == SV22T1020149.Models.Sales.OrderStatusEnum.Completed) // 4
+                                        {
+                                            <span class="badge bg-success px-3 py-2 rounded-pill">Hoàn thành</span>
+                                        }
+                                        else if (item.Status == SV22T1020149.Models.Sales.OrderStatusEnum.Cancelled) // -1
+                                        {
+                                            <span class="badge bg-danger px-3 py-2 rounded-pill">Đã hủy</span>
+                                        }
+                                        else if (item.Status == SV22T1020149.Models.Sales.OrderStatusEnum.Rejected) // -2
+                                        {
+                                            <span class="badge bg-secondary px-3 py-2 rounded-pill">Bị từ chối</span>
+                                        }
+                                    </td>
+
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <a href="~/Order/Detail/@item.OrderID" class="btn btn-outline-secondary" title="Xem chi tiết">
+                                                <i class="fa fa-eye"></i> Xem
+                                            </a>
+
+                                            @if (item.Status == SV22T1020149.Models.Sales.OrderStatusEnum.Shipping)
+                                            {
+                                                <button type="button" class="btn btn-outline-success fw-bold" onclick="finishOrder(@item.OrderID)" title="Xác nhận đã nhận hàng">
+                                                    Đã nhận
+                                                </button>
+                                            }
+
+                                            @if (item.Status == SV22T1020149.Models.Sales.OrderStatusEnum.New || item.Status == SV22T1020149.Models.Sales.OrderStatusEnum.Accepted)
+                                            {
+                                                <button type="button" class="btn btn-outline-danger" onclick="cancelOrder(@item.OrderID)" title="Hủy đơn hàng này">
+                                                    <i class="fa fa-times"></i> Hủy
+                                                </button>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Gọi API Hủy đơn hàng
+        function cancelOrder(id) {
+            if (confirm("Bạn có chắc chắn muốn hủy đơn hàng #" + id + " không? Hành động này không thể hoàn tác.")) {
+                $.ajax({
+                    url: '/Order/CancelOrder',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (res) {
+                        if (res.code === 1) {
+                            if (typeof Toast !== 'undefined') Toast.fire({ icon: 'success', title: res.message });
+                            else alert(res.message);
+                            setTimeout(function() { window.location.reload(); }, 1500);
+                        } else {
+                            if (typeof Toast !== 'undefined') Toast.fire({ icon: 'error', title: res.message });
+                            else alert(res.message);
+                        }
+                    }
+                });
             }
-        </tbody>
-    </table>
+        }
+
+        // Gọi API Xác nhận đã nhận hàng
+        function finishOrder(id) {
+            if (confirm("Xác nhận bạn đã nhận được đơn hàng #" + id + " và hài lòng với sản phẩm?")) {
+                $.ajax({
+                    url: '/Order/FinishOrder',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (res) {
+                        if (res.code === 1) {
+                            if (typeof Toast !== 'undefined') Toast.fire({ icon: 'success', title: res.message });
+                            else alert(res.message);
+                            setTimeout(function() { window.location.reload(); }, 1500);
+                        } else {
+                            if (typeof Toast !== 'undefined') Toast.fire({ icon: 'error', title: res.message });
+                            else alert(res.message);
+                        }
+                    }
+                });
+            }
+        }
+    </script>
 }

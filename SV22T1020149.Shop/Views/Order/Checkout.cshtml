@@ -1,0 +1,233 @@
+﻿@model IEnumerable<SV22T1020149.Models.Sales.OrderDetailViewInfo>
+
+@{
+    ViewBag.Title = "Thanh toán đơn hàng";
+    decimal totalCartPrice = Model?.Sum(m => m.SalePrice * m.Quantity) ?? 0;
+    // Phí ship mặc định ban đầu là 30k
+    decimal shippingFee = 30000;
+    decimal finalPrice = totalCartPrice + shippingFee;
+}
+
+<div class="container mt-4 mb-5">
+    <div class="mb-4">
+        <h4 class="fw-bold text-uppercase border-bottom pb-2">Thanh toán</h4>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-7">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white border-bottom-0 pt-4 pb-0">
+                    <h5 class="fw-bold mb-0"><i class="fa fa-map-marker-alt text-danger me-2"></i>Địa chỉ giao hàng</h5>
+                </div>
+                <div class="card-body mt-3">
+                    <form id="frmCheckout">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Tỉnh/Thành phố <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="province" placeholder="Ví dụ: Hà Nội" required>
+                            </div>
+                            <div class="col-md-4 mt-3 mt-md-0">
+                                <label class="form-label fw-semibold">Quận/Huyện <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="district" placeholder="Ví dụ: Cầu Giấy" required>
+                            </div>
+                            <div class="col-md-4 mt-3 mt-md-0">
+                                <label class="form-label fw-semibold">Phường/Xã <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="ward" placeholder="Ví dụ: Dịch Vọng" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-0">
+                            <label class="form-label fw-semibold">Địa chỉ cụ thể (Số nhà, Tên đường) <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="detailAddress" rows="2" placeholder="Ví dụ: Số 123, Đường ABC..." required></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0 mt-4">
+                <div class="card-header bg-white border-bottom-0 pt-4 pb-0">
+                    <h5 class="fw-bold mb-0"><i class="fa fa-credit-card text-success me-2"></i>Phương thức thanh toán</h5>
+                </div>
+                <div class="card-body mt-3">
+                    <div class="list-group">
+                        <label class="list-group-item d-flex align-items-center py-3 border-primary" style="cursor: pointer; background-color: #f8fbff;">
+                            <input class="form-check-input me-3 fs-5 mt-0" type="radio" name="paymentMethod" value="COD" checked>
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-money-bill-wave text-success fs-3 me-3" style="width: 35px; text-align: center;"></i>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Thanh toán tiền mặt (COD)</h6>
+                                    <small class="text-muted">Phí giao hàng toàn quốc: 30,000 đ</small>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="list-group-item d-flex align-items-center py-3" style="cursor: pointer;">
+                            <input class="form-check-input me-3 fs-5 mt-0" type="radio" name="paymentMethod" value="VNPAY">
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-qrcode text-primary fs-3 me-3" style="width: 35px; text-align: center;"></i>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Thanh toán qua VNPAY-QR</h6>
+                                    <small class="text-success fw-bold"><i class="fa fa-gift me-1"></i> Miễn phí giao hàng</small>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="list-group-item d-flex align-items-center py-3" style="cursor: pointer;">
+                            <input class="form-check-input me-3 fs-5 mt-0" type="radio" name="paymentMethod" value="ATM">
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-credit-card text-info fs-3 me-3" style="width: 35px; text-align: center;"></i>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Thẻ ATM / Visa / MasterCard</h6>
+                                    <small class="text-success fw-bold"><i class="fa fa-gift me-1"></i> Miễn phí giao hàng</small>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-5">
+            <div class="card shadow-sm border-0 sticky-top" style="top: 80px; z-index: 10;">
+                <div class="card-header bg-white border-bottom-0 pt-4 pb-2">
+                    <h5 class="fw-bold mb-0"><i class="fa fa-shopping-bag text-primary me-2"></i>Đơn hàng của bạn</h5>
+                </div>
+                <div class="card-body">
+                    <div class="order-items mb-4" style="max-height: 350px; overflow-y: auto;">
+                        @foreach (var item in Model)
+                        {
+                            <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                                <div class="position-relative me-3">
+                                    <img src="/images/products/@(string.IsNullOrEmpty(item.Photo) ? "nophoto.png" : item.Photo)"
+                                         class="img-thumbnail rounded" style="width: 65px; height: 65px; object-fit: cover;">
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                        @item.Quantity
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1 text-truncate" style="max-width: 200px; font-size: 0.95rem;">@item.ProductName</h6>
+                                    <span class="text-muted small">Đơn giá: @item.SalePrice.ToString("N0") đ</span>
+                                </div>
+                                <div class="text-end fw-semibold text-danger">
+                                    @((item.SalePrice * item.Quantity).ToString("N0")) đ
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Tạm tính:</span>
+                        <span class="fw-semibold" id="totalCartPrice" data-value="@totalCartPrice">@totalCartPrice.ToString("N0") đ</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-muted">Phí giao hàng:</span>
+                        <span class="fw-semibold" id="shippingFeeDisplay">@shippingFee.ToString("N0") đ</span>
+                    </div>
+
+                    <hr class="my-3 border-secondary border-opacity-25">
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <span class="fw-bold fs-5">Tổng cộng:</span>
+                        <div class="text-end">
+                            <span class="fw-bold text-danger fs-3 d-block" id="finalPriceDisplay">@finalPrice.ToString("N0") đ</span>
+                            <small class="text-muted fst-italic">(Đã bao gồm VAT nếu có)</small>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="submitOrder()" class="btn btn-danger w-100 py-3 rounded text-uppercase fw-bold shadow-sm" style="font-size: 1.1rem; background-color: #d10024; border-color: #d10024;">
+                        XÁC NHẬN ĐẶT HÀNG
+                    </button>
+
+                    <a href="~/Order/Cart" class="btn btn-outline-secondary w-100 mt-2 py-2 rounded">
+                        <i class="fa fa-arrow-left me-1"></i> Quay lại giỏ hàng
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Hiệu ứng và tính toán phí ship khi đổi phương thức thanh toán
+        $('input[name="paymentMethod"]').change(function() {
+            $('.list-group-item').removeClass('border-primary').css('background-color', '#fff');
+            $(this).closest('.list-group-item').addClass('border-primary').css('background-color', '#f8fbff');
+
+            var paymentMethod = $(this).val();
+            var shippingFee = (paymentMethod === 'COD') ? 30000 : 0;
+            var totalCartPrice = parseInt($('#totalCartPrice').attr('data-value'));
+            var finalPrice = totalCartPrice + shippingFee;
+
+            $('#shippingFeeDisplay').text(shippingFee.toLocaleString('vi-VN') + ' đ');
+            $('#finalPriceDisplay').text(finalPrice.toLocaleString('vi-VN') + ' đ');
+        });
+
+        function submitOrder() {
+            // Lấy dữ liệu các ô nhập
+            var province = $('#province').val().trim();
+            var district = $('#district').val().trim();
+            var ward = $('#ward').val().trim();
+            var detail = $('#detailAddress').val().trim();
+
+            // Lấy mã Phương thức thanh toán (COD, VNPAY, ATM)
+            var paymentCode = $('input[name="paymentMethod"]:checked').val();
+
+            // Validate không cho để trống
+            if (!province || !district || !ward || !detail) {
+                if (typeof Toast !== 'undefined') {
+                    Toast.fire({ icon: 'warning', title: 'Vui lòng điền đầy đủ thông tin địa chỉ giao hàng!' });
+                } else {
+                    alert('Vui lòng điền đầy đủ thông tin địa chỉ giao hàng!');
+                }
+                return;
+            }
+
+            // Gộp chuỗi DeliveryAddress: Chỉ gồm Địa chỉ cụ thể, Phường, Quận
+            var fullAddress = detail + ", " + ward + ", " + district;
+
+            var btnSubmit = $('.btn-danger');
+            var originalText = btnSubmit.text();
+            btnSubmit.text('ĐANG XỬ LÝ...').prop('disabled', true);
+
+            // Gửi dữ liệu xuống Controller
+            $.ajax({
+                url: '/Order/CreateOrder',
+                type: 'POST',
+                data: {
+                    province: province,          // Lưu vào DeliveryProvince
+                    address: fullAddress,        // Lưu vào DeliveryAddress
+                    paymentMethod: paymentCode   // Truyền mã thanh toán để Controller tự cộng 30k
+                },
+                success: function (res) {
+                    if (res.code > 0) {
+                        if (typeof Toast !== 'undefined') {
+                            Toast.fire({ icon: 'success', title: 'Đặt hàng thành công! Mã đơn: ' + res.code });
+                        } else {
+                            alert("Đặt hàng thành công! Mã đơn hàng: " + res.code);
+                        }
+
+                        setTimeout(function () {
+                            window.location.href = '/Order/History';
+                        }, 1500);
+
+                    } else {
+                        btnSubmit.text(originalText).prop('disabled', false);
+                        if (typeof Toast !== 'undefined') {
+                            Toast.fire({ icon: 'error', title: res.message || "Lỗi đặt hàng." });
+                        } else {
+                            alert(res.message || "Lỗi đặt hàng.");
+                        }
+                    }
+                },
+                error: function () {
+                    btnSubmit.text(originalText).prop('disabled', false);
+                    alert("Lỗi kết nối máy chủ! Vui lòng kiểm tra lại tài khoản đăng nhập.");
+                }
+            });
+        }
+    </script>
+}

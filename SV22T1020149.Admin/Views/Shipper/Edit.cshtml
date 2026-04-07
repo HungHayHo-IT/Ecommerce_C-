@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SV22T1020149.Models.Partner.Shipper
+@{
 }
 @section PageToolBar {
     <button type="submit" form="formEdit" class="btn btn-primary">
@@ -23,21 +24,32 @@
             </div>
 
             <div class="card-body">
-                <form id="formEdit" method="post">
+                @* Logic: Cấu hình action gửi dữ liệu đến hàm SaveData *@
+                <form id="formEdit" method="post" action="~/Shipper/SaveData">
+
+                    @* Logic: Hidden ID để phân biệt thêm mới (0) hoặc cập nhật (>0) *@
+                    <input type="hidden" asp-for="ShipperID" />
 
                     <div class="mb-3">
                         <label class="form-label">Tên người giao hàng</label>
-                        <input type="text"
+                        @* Logic: Mapping thuộc tính ShipperName *@
+                        <input type="text" asp-for="ShipperName"
                                class="form-control"
                                placeholder="Nhập tên người giao hàng" autofocus />
+                        <span asp-validation-for="ShipperName" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Điện thoại</label>
-                        <input type="tel"
+                        @* Logic: Mapping thuộc tính Phone *@
+                        <input type="tel" asp-for="Phone"
                                class="form-control"
                                placeholder="Nhập số điện thoại" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
                     </div>
+
+                    @* Logic: Hiển thị các lỗi tổng quát từ Server *@
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 </form>
             </div>

@@ -233,6 +233,20 @@ public static class PartnerDataService
         return await customerDB.ValidatePhoneAsync(phone, customerID);
     }
 
+    /// <summary>
+    /// Kiểm tra xem email của khách hàng có hợp lệ không
+    /// </summary>
+    /// <param name="email">Địa chỉ email cần kiểm tra</param>
+    /// <param name="customerID">
+    /// Bằng 0 nếu kiểm tra email đối với khách hàng mới.
+    /// Khác 0 nếu kiểm tra email của khách hàng có mã là <paramref name="customerID"/>
+    /// </param>
+    /// <returns></returns>
+    public static async Task<bool> ValidateCustomerEmailAsync(string email, int customerID = 0)
+    {
+        return await customerDB.ValidateEmailAsync(email, customerID);
+    }
+
     #endregion
 
     #region Shipper

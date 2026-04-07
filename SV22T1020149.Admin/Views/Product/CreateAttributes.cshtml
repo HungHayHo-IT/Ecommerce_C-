@@ -1,0 +1,83 @@
+﻿@model ProductAttribute
+@{
+    // Tự động đổi tiêu đề dựa trên việc có AttributeID hay chưa
+    bool isEdit = Model.AttributeID > 0;
+    ViewBag.Title = isEdit ? "Chỉnh sửa thuộc tính" : "Thêm thuộc tính mặt hàng";
+}
+
+<div class="container-fluid pt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h5 class="mb-0 fw-bold @(isEdit ? "text-info" : "text-primary")">
+                        <i class="bi @(isEdit ? "bi-pencil-square" : "bi-plus-circle") me-2"></i>
+                        @ViewBag.Title
+                    </h5>
+                    @* Tên mặt hàng nên được truyền qua ViewBag để hiển thị chính xác *@
+                    <small class="text-muted">Mặt hàng: <strong>@ViewBag.ProductName</strong></small>
+                </div>
+                <div class="card-body p-4">
+                    <form action="~/Product/SaveAttribute" method="post">
+                        @* Các trường ẩn quan trọng để truyền dữ liệu về Controller *@
+                        <input type="hidden" name="AttributeID" value="@Model.AttributeID" />
+                        <input type="hidden" name="ProductID" value="@Model.ProductID" />
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small">Tên thuộc tính:</label>
+                            <input type="text" name="AttributeName" class="form-control"
+                                   placeholder="Ví dụ: Hương vị, Thể tích, Hạn sử dụng..."
+                                   value="@Model.AttributeName" required autofocus>
+                            <div class="form-text italic small">Nhập tên của thông số kỹ thuật hoặc đặc điểm.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small">Giá trị thuộc tính:</label>
+                            <textarea name="AttributeValue" class="form-control" rows="3"
+                                      placeholder="Ví dụ: Ít đường, 180ml, 6 tháng..." required>@Model.AttributeValue</textarea>
+                            <div class="form-text italic small">Nhập nội dung chi tiết cho thuộc tính trên.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small">Thứ tự hiển thị:</label>
+                            <input type="number" name="DisplayOrder" class="form-control w-50"
+                                   value="@Model.DisplayOrder" min="1">
+                        </div>
+
+                        <hr class="mt-4">
+
+                        <div class="d-flex justify-content-end gap-2">
+                            <button type="submit" class="btn @(isEdit ? "btn-info text-white" : "btn-primary") px-4">
+                                <i class="bi bi-save me-1"></i> Lưu thuộc tính
+                            </button>
+                            @* Quay lại trang chỉnh sửa sản phẩm thay vì trang chi tiết sẽ tiện hơn *@
+                            <a href="~/Product/Edit/@Model.ProductID" class="btn btn-outline-secondary">
+                                Hủy bỏ
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="alert alert-info mt-3 small border-0 shadow-sm">
+                <i class="bi bi-lightbulb me-2"></i>
+                <strong>Gợi ý:</strong> Các thuộc tính sẽ hiển thị trong phần "Thông số kỹ thuật" ở trang chi tiết sản phẩm.
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+    }
+
+    .form-label {
+        color: #555;
+    }
+
+    .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+    }
+</style>

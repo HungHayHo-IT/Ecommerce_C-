@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
@@ -52,5 +52,73 @@
         });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        // Cấu hình Toast thông báo nhỏ góc trên bên phải
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+
+        // Hàm Thêm vào giỏ gọi từ bất kỳ đâu
+        function addProductToCart(productId, price) {
+            $.ajax({
+                url: '/Order/AddCartItem', // Gọi tới hàm AddCartItem trong OrderController
+                type: 'POST',
+                data: {
+                    productId: productId,
+                    quantity: 1, // Mặc định thêm 1 sản phẩm
+                    price: price
+                },
+                success: function (res) {
+                    if (res.code === 1) {
+                        // Hiện thông báo Đẹp
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Đã thêm sản phẩm vào giỏ hàng!'
+                        });
+
+                        // Tự động cập nhật số lượng trên Icon Giỏ hàng (Header)
+                        updateCartBadge();
+                    } else {
+                        Toast.fire({
+                            icon: 'error',
+                            title: res.message || 'Không thể thêm vào giỏ hàng'
+                        });
+                    }
+                },
+                error: function () {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Lỗi kết nối đến máy chủ!'
+                    });
+                }
+            });
+        }
+
+        // Hàm cập nhật số lượng ở Header
+        function updateCartBadge() {
+            $.ajax({
+                url: '/Order/CartCount', // Gọi hàm đếm số lượng có sẵn trong Controller
+                type: 'GET',
+                success: function(res) {
+                    if(res.count !== undefined) {
+                        // Sửa id/class này cho khớp với thẻ số lượng giỏ hàng trên Navbar của bạn
+                        $('.cart-badge, #cart-badge').text(res.count);
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>

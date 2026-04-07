@@ -1,16 +1,17 @@
-@model OrderDetailViewInfo
+﻿@model OrderDetailViewInfo
 @{
     Layout = null;
 }
 <div class="modal-header">
     <strong class="modal-title">
-        Cập nhật thông tin hàng trong giỏ
+        Cập nhật thông tin mặt hàng trong giỏ
     </strong>
     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 </div>
 
 <div class="modal-body">
-    <form id="formEditCart" class="container-fluid" onsubmit="updateCartItem(event,this)">
+    <form id="formEditCart" class="container-fluid" action="/Order/UpdateCartItem"
+          method="post" onsubmit="updateCartItem(event,this)">
         <input type="hidden" asp-for="ProductID" />
         <div class="row">
             <div class="col-md-8">
@@ -28,9 +29,10 @@
                     </label>
                     <div class="col-sm-5">
                         <input type="number"
+                               name="quantity"
                                class="form-control text-end"
                                min="1"
-                               asp-for="Quantity">
+                               value="@Model.Quantity">
                     </div>
                 </div>
                 <div class="row mb-3 align-items-center">
@@ -40,12 +42,12 @@
                     <div class="col-sm-5">
                         <input type="text"
                                class="form-control text-end money-input"
-                               asp-for="SalePrice">
+                               asp-for="SalePrice" />
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 text-end">
-                <img src="/images/products/@Model.Photo"
+            <div class="col-md-4 text-end">                
+                <img src="/images/products/demo.png"
                      alt="Tên mặt hàng"
                      class="img-thumbnail"
                      style="max-height:180px">

@@ -1,0 +1,45 @@
+﻿@model SV22T1020149.Models.Catalog.ProductAttribute
+
+@{
+    ViewBag.Title = Model.AttributeID == 0 ? "Bổ sung thuộc tính mặt hàng" : "Cập nhật thuộc tính mặt hàng";
+}
+
+<div class="box box-primary">
+    
+
+    <div class="box-body">
+        <form action="~/Product/SaveAttribute" method="post">
+
+            <input type="hidden" name="ProductID" value="@Model.ProductID" />
+            <input type="hidden" name="AttributeID" value="@Model.AttributeID" />
+
+            <div class="form-group">
+                <label>Tên thuộc tính:</label>
+                <input type="text" class="form-control" name="AttributeName" value="@Model.AttributeName" placeholder="Ví dụ: CPU, RAM, Màu sắc..." autofocus />
+                @Html.ValidationMessage("AttributeName", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label>Giá trị thuộc tính:</label>
+                <input type="text" class="form-control" name="AttributeValue" value="@Model.AttributeValue" placeholder="Ví dụ: Core i5, 8GB, Đỏ..." />
+                @Html.ValidationMessage("AttributeValue", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label>Thứ tự hiển thị:</label>
+                <input type="number" class="form-control" name="DisplayOrder" value="@Model.DisplayOrder" min="1" />
+            </div>
+
+            <div class="form-group text-right">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-save"></i> Lưu dữ liệu
+                </button>
+                <a href="~/Product/Edit/@Model.ProductID" class="btn btn-default">
+                    <i class="fa fa-arrow-left"></i> Quay lại
+                </a>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </form>
+    </div>
+</div>

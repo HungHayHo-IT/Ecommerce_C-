@@ -21,22 +21,22 @@
 <div class="container">
     <h2 class="section-title">Danh mục nổi bật</h2>
     <div class="categories-grid">
-        <a href="~/Product?category=1" class="category-card">
+        <a href="~/Product?categoryId=1" class="category-card">
             <img src="https://picsum.photos/id/1011/800/600" alt="Thời trang">
             <h3>Thời trang</h3>
             <p>Áo, đầm, phụ kiện</p>
         </a>
-        <a href="~/Product?category=2" class="category-card">
+        <a href="~/Product?categoryId=2" class="category-card">
             <img src="https://picsum.photos/id/180/800/600" alt="Điện thoại">
             <h3>Điện thoại</h3>
             <p>Smartphone, ốp lưng</p>
         </a>
-        <a href="~/Product?category=3" class="category-card">
+        <a href="~/Product?categoryId=3" class="category-card">
             <img src="https://picsum.photos/id/1040/800/600" alt="Laptop & PC">
             <h3>Laptop & PC</h3>
             <p>Máy tính, linh kiện</p>
         </a>
-        <a href="~/Product?category=4" class="category-card">
+        <a href="~/Product?categoryId=4" class="category-card">
             <img src="https://picsum.photos/id/250/800/600" alt="Phụ kiện">
             <h3>Phụ kiện</h3>
             <p>Túi xách, đồng hồ</p>
@@ -65,11 +65,13 @@
                     <div class="product-info" style="padding-top: 10px;">
                         @if (!item.IsSelling)
                         {
-                            <button class="add-to-cart" disabled>Ngừng bán</button>
+                            <button class="add-to-cart" disabled style="background-color: #6c757d; cursor: not-allowed; width: 100%;">Ngừng bán</button>
                         }
                         else
                         {
-                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ</button>
+                            <a href="~/Product/Detail/@item.ProductID" class="add-to-cart" style="text-decoration: none; display: block; text-align: center; box-sizing: border-box;">
+                                <i class="fas fa-eye"></i> Xem chi tiết
+                            </a>
                         }
                     </div>
                 </div>
@@ -113,11 +115,13 @@
                     <div class="product-info" style="padding-top: 10px;">
                         @if (!item.IsSelling)
                         {
-                            <button class="add-to-cart" disabled>Ngừng bán</button>
+                            <button class="add-to-cart" disabled style="background-color: #6c757d; cursor: not-allowed; width: 100%;">Ngừng bán</button>
                         }
                         else
                         {
-                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ</button>
+                            <a href="~/Product/Detail/@item.ProductID" class="add-to-cart" style="text-decoration: none; display: block; text-align: center; box-sizing: border-box;">
+                                <i class="fas fa-eye"></i> Xem chi tiết
+                            </a>
                         }
                     </div>
                 </div>

@@ -88,6 +88,7 @@ namespace SV22T1020149.DataLayers.SQLServer
         /// </summary>
         public async Task<PagedResult<Category>> ListAsync(PaginationSearchInput input)
         {
+          
             var result = new PagedResult<Category>()
             {
                 Page = input.Page,

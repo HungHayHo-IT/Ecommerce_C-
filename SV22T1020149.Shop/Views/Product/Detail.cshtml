@@ -202,7 +202,7 @@
 </style>
 
 <div class="container detail-wrapper">
-    <a href="~/" class="text-decoration-none text-muted mb-4 d-inline-block fw-bold" style="transition: 0.2s;"><i class="fas fa-arrow-left me-2"></i> Tiếp tục mua sắm</a>
+    <a href="~/Product" class="text-decoration-none text-muted mb-4 d-inline-block fw-bold" style="transition: 0.2s;"><i class="fas fa-arrow-left me-2"></i> Tiếp tục mua sắm</a>
 
     <div class="product-detail-card">
         <div class="row g-5">
@@ -249,6 +249,7 @@
 
                 <form id="frmAddToCart" onsubmit="addToCart(event, this)">
                     <input type="hidden" name="productId" value="@Model.ProductID" />
+                    <input type="hidden" name="price" value="@Model.Price" />
 
                     <div class="quantity-control">
                         <label>Số lượng:</label>
@@ -262,7 +263,7 @@
                     @if (Model.IsSelling)
                     {
                         <button type="submit" class="btn-add-cart">
-                            <i class="fas fa-cart-plus fs-5"></i> Thêm vào giỏ hàng
+                            <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
                         </button>
                     }
                     else
@@ -296,13 +297,11 @@
 
 @section Scripts {
     <script>
-        // Hàm tăng số lượng
         function increaseQty() {
             var input = document.getElementById('inputQty');
             input.value = parseInt(input.value) + 1;
         }
 
-        // Hàm giảm số lượng (không cho nhỏ hơn 1)
         function decreaseQty() {
             var input = document.getElementById('inputQty');
             var currentVal = parseInt(input.value);
@@ -311,7 +310,6 @@
             }
         }
 
-        // Hàm gọi API thêm vào giỏ hàng (Giữ nguyên logic gốc của bạn)
         function addToCart(e, form) {
             e.preventDefault();
             var fd = new FormData(form);
@@ -319,19 +317,38 @@
                 .then(r => r.json())
                 .then(j => {
                     if (j.code === 0) {
-                        alert(j.message);
+                        // Hiển thị lỗi bằng Toast
+                        if (typeof Toast !== 'undefined') {
+                            Toast.fire({ icon: 'error', title: j.message || 'Lỗi thêm giỏ hàng' });
+                        } else {
+                            alert(j.message);
+                        }
                     } else {
-                        // Hiển thị thông báo đẹp hơn thay vì alert (tùy chọn)
-                        alert('Đã thêm ' + document.getElementById('inputQty').value + ' sản phẩm vào giỏ hàng thành công!');
+                        var qty = document.getElementById('inputQty').value;
 
-                        // Cập nhật số lượng trên icon giỏ hàng ở header
-                        fetch('/Order/CartCount').then(r => r.json()).then(d => {
-                            var cartBadge = document.getElementById('cartCount');
-                            if(cartBadge) cartBadge.innerText = d.count || 0;
-                        });
+                        // Hiển thị thông báo đẹp bằng Toast
+                        if (typeof Toast !== 'undefined') {
+                            Toast.fire({
+                                icon: 'success',
+                                title: `Đã thêm ${qty} sản phẩm vào giỏ hàng!`
+                            });
+                        } else {
+                            alert(`Đã thêm ${qty} sản phẩm vào giỏ hàng!`);
+                        }
+
+                        // Gọi lại hàm cập nhật số lượng ở Header đã viết trong _Layout.cshtml
+                        if (typeof updateCartBadge === "function") {
+                            updateCartBadge();
+                        }
                     }
                 })
-                .catch(err => alert('Có lỗi xảy ra, vui lòng thử lại!'));
+                .catch(err => {
+                    if (typeof Toast !== 'undefined') {
+                        Toast.fire({ icon: 'error', title: 'Có lỗi xảy ra, vui lòng thử lại!' });
+                    } else {
+                        alert('Có lỗi xảy ra, vui lòng thử lại!');
+                    }
+                });
         }
     </script>
 }

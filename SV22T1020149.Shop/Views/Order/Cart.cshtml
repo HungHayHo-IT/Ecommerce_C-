@@ -1,43 +1,223 @@
-@model List<SV22T1020149.Models.Sales.OrderDetailViewInfo>
+﻿@model IEnumerable<SV22T1020149.Models.Sales.OrderDetailViewInfo>
+
 @{
-    ViewData["Title"] = "Gi? h�ng";
+    ViewBag.Title = "Giỏ hàng của bạn";
+    decimal totalCartPrice = Model?.Sum(m => m.SalePrice * m.Quantity) ?? 0;
 }
 
-@if (Model.Count == 0)
-{
-    <div class="alert alert-info">Gi? h�ng tr?ng</div>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr><th>#</th><th>T�n</th><th>S? l??ng</th><th>Gi�</th><th>Th�nh ti?n</th><th></th></tr>
-        </thead>
-        <tbody>
-            @foreach (var it in Model)
-            {
-                <tr>
-                    <td>@it.ProductID</td>
-                    <td>@it.ProductName</td>
-                    <td>@it.Quantity</td>
-                    <td>@it.SalePrice.ToString("N0")</td>
-                    <td>@it.TotalPrice.ToString("N0")</td>
-                    <td><button class="btn btn-sm btn-danger" onclick="remove(@it.ProductID)">X�a</button></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    <div class="text-end">
-        <a class="btn btn-primary" href="~/Order/History">??t h�ng</a>
+<div class="container mt-4 mb-5">
+    <div class="d-flex align-items-center mb-3">
+        <h4 class="fw-bold mb-0 text-uppercase">Giỏ hàng</h4>
+        <span class="ms-2 badge bg-primary rounded-pill">@(Model?.Sum(m => m.Quantity) ?? 0) sản phẩm</span>
     </div>
-}
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="card shadow-sm border-0 py-5 text-center">
+            <div class="card-body">
+                <img src="/images/empty-cart.png" alt="Empty Cart" style="width: 150px; opacity: 0.5;" class="mb-3" onerror="this.src='https://cdn-icons-png.flaticon.com/512/11329/11329060.png'">
+                <h5 class="text-muted">Giỏ hàng của bạn đang trống!</h5>
+                <p class="text-secondary">Hãy quay lại mua sắm và chọn những sản phẩm bạn yêu thích nhé.</p>
+                <a href="~/Product" class="btn btn-primary rounded-pill px-4 py-2 mt-2">
+                    <i class="fa fa-arrow-left me-2"></i> Tiếp tục mua sắm
+                </a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-0">
+                        <div class="row g-0 bg-light p-3 border-bottom d-none d-md-flex text-muted fw-semibold">
+                            <div class="col-6">Sản phẩm</div>
+                            <div class="col-2 text-center">Đơn giá</div>
+                            <div class="col-2 text-center">Số lượng</div>
+                            <div class="col-2 text-end">Thành tiền</div>
+                        </div>
+
+                        @foreach (var item in Model)
+                        {
+                            <div class="row g-0 p-3 border-bottom align-items-center">
+                                <div class="col-12 col-md-6 mb-3 mb-md-0 d-flex align-items-center">
+                                    <div class="position-relative me-3">
+                                        <button type="button" onclick="removeCartItem(@item.ProductID)" class="position-absolute top-0 start-0 translate-middle btn btn-danger btn-sm rounded-circle shadow-sm" style="width: 24px; height: 24px; padding: 0; line-height: 1;" title="Xóa sản phẩm này">
+                                            <i class="fa fa-times" style="font-size: 12px;"></i>
+                                        </button>
+
+                                        <a href="~/Product/Detail/@item.ProductID">
+                                            <img src="/images/products/@(string.IsNullOrEmpty(item.Photo) ? "nophoto.png" : item.Photo)"
+                                                 class="img-thumbnail rounded"
+                                                 alt="@item.ProductName"
+                                                 style="width: 80px; height: 80px; object-fit: cover;">
+                                        </a>
+                                    </div>
+
+                                    <div>
+                                        <a href="~/Product/Detail/@item.ProductID" class="text-dark text-decoration-none fw-semibold d-block" style="font-size: 0.95rem; line-height: 1.3;">
+                                            @item.ProductName
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-4 col-md-2 text-md-center">
+                                    <span class="d-md-none text-muted small">Đơn giá: </span>
+                                    <span class="fw-medium">@item.SalePrice.ToString("N0") đ</span>
+                                </div>
+
+                                <div class="col-4 col-md-2 text-center">
+                                    <div class="input-group input-group-sm" style="width: 90px; margin: 0 auto;">
+                                        <button class="btn btn-outline-secondary" type="button" onclick="updateCartItem(@item.ProductID, @(item.Quantity - 1), @item.SalePrice)" @(item.Quantity <= 1 ? "disabled" : "")>
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+
+                                        <input type="text" class="form-control text-center px-1" value="@item.Quantity" readonly>
+
+                                        <button class="btn btn-outline-secondary" type="button" onclick="updateCartItem(@item.ProductID, @(item.Quantity + 1), @item.SalePrice)">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="col-4 col-md-2 text-end">
+                                    <span class="d-md-none text-muted small">Thành tiền: </span>
+                                    <strong class="text-danger">@((item.SalePrice * item.Quantity).ToString("N0")) đ</strong>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="p-3 bg-light d-flex justify-content-between align-items-center rounded-bottom">
+                            <a href="~/Product" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                <i class="fa fa-arrow-left me-1"></i> Mua thêm
+                            </a>
+
+                            <button type="button" onclick="clearCart()" class="btn btn-outline-danger btn-sm rounded-pill px-3">
+                                <i class="fa fa-trash me-1"></i> Xóa tất cả giỏ hàng
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card shadow-sm border-0 sticky-top" style="top: 80px; z-index: 10;">
+                    <div class="card-header bg-white border-bottom-0 pt-4 pb-2">
+                        <h5 class="fw-bold mb-0">Hóa đơn của bạn</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-muted">Tạm tính:</span>
+                            <span class="fw-semibold">@totalCartPrice.ToString("N0") đ</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-3 text-success">
+                            <span>Giảm giá:</span>
+                            <span>0 đ</span>
+                        </div>
+
+                        <hr class="my-3 border-secondary border-opacity-25">
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <span class="fw-bold fs-5">Tổng cộng:</span>
+                            <div class="text-end">
+                                <span class="fw-bold text-danger fs-4 d-block">@totalCartPrice.ToString("N0") đ</span>
+                                <small class="text-muted fst-italic">(Đã bao gồm VAT nếu có)</small>
+                            </div>
+                        </div>
+
+                        <a href="~/Order/Checkout" class="btn w-100 py-3 rounded text-uppercase fw-bold shadow-sm d-flex justify-content-center align-items-center text-white" style="font-size: 1.1rem; background-color: #d10024; border-color: #d10024; text-decoration: none;">
+                            TIẾN HÀNH ĐẶT HÀNG
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
 
 @section Scripts {
+
     <script>
-        function remove(id) {
-            fetch('/Order/RemoveCartItem', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ productId: id }) })
-                .then(r => r.json()).then(j => location.reload());
+        function updateCartItem(id, quantity, price) {
+            $.ajax({
+                url: '/Order/UpdateCartItem',
+                type: 'POST',
+                data: {
+                    productId: id,
+                    quantity: quantity,
+                    salePrice: price
+                },
+                success: function (res) {
+                    if (res.code === 1) {
+                        window.location.reload();
+                    } else {
+                        alert(res.message || "Lỗi cập nhật số lượng.");
+                    }
+                }
+            });
+        }
+
+        function removeCartItem(id) {
+            if (confirm("Bạn muốn xóa sản phẩm này khỏi giỏ hàng?")) {
+                $.ajax({
+                    url: '/Order/RemoveCartItem',
+                    type: 'POST',
+                    data: { productId: id },
+                    success: function (res) {
+                        if (res.code === 1) {
+                            window.location.reload();
+                        } else {
+                            alert(res.message || "Lỗi xóa sản phẩm.");
+                        }
+                    }
+                });
+            }
+        }
+
+                function clearCart() {
+            Swal.fire({
+                title: 'Xác nhận xóa?',
+                text: "Toàn bộ sản phẩm trong giỏ hàng của bạn sẽ bị gỡ bỏ!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Đồng ý, xóa hết!',
+                cancelButtonText: 'Quay lại'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Thực hiện gọi AJAX xóa sạch giỏ hàng
+                    $.ajax({
+                        url: '/Order/ClearCart',
+                        type: 'POST',
+                        success: function (res) {
+                            if (res.code === 1) {
+                                // Hiện thông báo thành công và tải lại trang để hiện giao diện Giỏ hàng trống
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Đã dọn sạch giỏ hàng!'
+                                });
+
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1000);
+                            }
+                        },
+                        error: function() {
+                            alert("Lỗi kết nối máy chủ khi xóa giỏ hàng!");
+                        }
+                    });
+                }
+            });
         }
     </script>
 }
+
+<style>
+    .translate-middle {
+        transform: translate(-30%, -30%) !important;
+    }
+</style>

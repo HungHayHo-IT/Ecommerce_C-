@@ -24,5 +24,8 @@ namespace SV22T1020149.DataLayers.Interfaces
         /// <param name="password"></param>
         /// <returns></returns>
         Task<bool> ChangePasswordAsync(string userName, string password);
+
+        Task<bool> RegisterAsync(UserAccount data, string password);
+        Task<bool> CheckEmailExistsAsync(string email);
     }
 }

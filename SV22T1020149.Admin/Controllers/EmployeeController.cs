@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SV22T1020149.BusinessLayers;
 using SV22T1020149.Models.Common;
 using SV22T1020149.Models.HR;
 
 namespace SV22T1020149.Admin.Controllers
 {
+
+    [Authorize(Roles = WebUserRoles.Administrator)]
     public class EmployeeController : Controller
     {
         private const int PAGESIZE = 10;
@@ -54,11 +57,7 @@ namespace SV22T1020149.Admin.Controllers
             };
             return View("Edit", model);
         }
-        /// <summary>
-        /// Cập nhật 1 nhân viên
-        /// </summary>
-        /// <param name="id">Mã nhân viên cần cập nhật</param>
-        /// <returns></returns>
+
         public async Task<IActionResult> Edit(int id)
         {
             ViewBag.Title = "Cập nhật thông tin nhân viên";
@@ -123,14 +122,38 @@ namespace SV22T1020149.Admin.Controllers
                 return View("Edit", data);
             }
         }
+
         /// <summary>
         /// Xóa 1 nhân viên
         /// </summary>
         /// <param name="id">Mã nhân viên cần xóa</param>
         /// <returns></returns>
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            // Trường hợp thực hiện xóa (POST)
+            if (HttpMethods.IsPost(Request.Method))
+            {
+                // Kiểm tra điều kiện xóa (giả sử dùng IsUsedEmployeeAsync hoặc kết quả từ hàm Delete)
+                if (await HRDataService.IsUsedEmployeeAsync(id))
+                {
+                    ModelState.AddModelError(string.Empty, "Không thể xóa nhân viên này vì đã có dữ liệu liên quan (lập đơn hàng).");
+                    var modelErr = await HRDataService.GetEmployeeAsync(id);
+                    ViewBag.CanDelete = false;
+                    return View(modelErr);
+                }
+
+                await HRDataService.DeleteEmployeeAsync(id);
+                return RedirectToAction("Index");
+            }
+
+            // Trường hợp hiển thị xác nhận (GET)
+            var model = await HRDataService.GetEmployeeAsync(id);
+            if (model == null) return RedirectToAction("Index");
+
+            // Kiểm tra xem nhân viên này có xóa được không để báo cho View
+            ViewBag.CanDelete = !await HRDataService.IsUsedEmployeeAsync(id);
+
+            return View(model);
         }
         /// <summary>
         /// Đổi mật khẩu 1 nhân viên

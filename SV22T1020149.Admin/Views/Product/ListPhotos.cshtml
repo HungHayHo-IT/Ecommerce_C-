@@ -1,6 +1,10 @@
-﻿@{
+﻿@model int
+@{
     Layout = null;
+    // Lấy danh sách ảnh thật từ Database thông qua Service
+    var photos = await SV22T1020149.BusinessLayers.CatalogDataService.ListPhotosAsync(Model);
 }
+
 <div class="row justify-content-center">
     <div class="col-12">
         <div class="card card-info card-outline mt-4">
@@ -8,14 +12,13 @@
                 <div class="row">
                     <div class="col">
                         <h6 id="photos" class="mb-0">
-                            <i class="bi bi-images me-2"></i>
-                            Thư viện ảnh
+                            <i class="bi bi-images me-2"></i> Thư viện ảnh
                         </h6>
                     </div>
                     <div class="col text-end">
-                        <a class="btn btn-sm btn-primary" href="~/Product/CreatePhoto/123">
-                            <i class="bi bi-plus-circle me-1"></i>
-                            Thêm ảnh
+                        @* Đường dẫn đúng để gọi hàm Photo(method="add") trong Controller *@
+                        <a class="btn btn-sm btn-primary" href="~/Product/Photo/@Model?method=add">
+                            <i class="bi bi-plus-circle me-1"></i> Thêm ảnh
                         </a>
                     </div>
                 </div>
@@ -33,27 +36,45 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for (int i = 1; i <= 5; i++)
+                        @if (photos.Count() > 0)
+                        {
+                            foreach (var item in photos)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        <img src="~/@(string.IsNullOrWhiteSpace(item.Photo) ? "images/products/nophoto.png" : item.Photo)"
+                                             class="img-thumbnail"
+                                             style="max-height:80px;" />
+                                    </td>
+                                    <td>@item.Description</td>
+                                    <td class="text-center">@item.DisplayOrder</td>
+                                    <td class="text-center">
+                                        @if (item.IsHidden)
+                                        {
+                                            <span class="badge bg-danger">Ẩn</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-success">Hiện</span>
+                                        }
+                                    </td>
+                                    <td class="text-center text-nowrap">
+                                        @* Gọi hàm Photo với method="edit" và truyền photoId thật *@
+                                        <a class="btn btn-sm btn-primary" href="~/Product/Photo/@item.ProductID?method=edit&photoId=@item.PhotoID">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a class="btn btn-sm btn-danger" href="~/Product/Photo/@item.ProductID?method=delete&photoId=@item.PhotoID"
+                                           onclick="return confirm('Xóa ảnh này của mặt hàng?')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
                         {
                             <tr>
-                                <td class="text-center">
-                                    <img src="~/images/products/demo.png"
-                                    class="img-thumbnail"
-                                    style="max-height:80px;" />
-                                </td>
-                                <td>Ảnh mặt trước sản phẩm</td>
-                                <td class="text-center">@i</td>
-                                <td class="text-center">
-                                    <span class="badge bg-success">Hiện</span>
-                                </td>
-                                <td class="text-center text-nowrap">
-                                    <a class="btn btn-sm btn-primary" href="~/Product/EditPhoto/123?photoId=456">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <a class="btn btn-sm btn-danger" href="~/Product/DeletePhoto/123?photoId=456">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                </td>
+                                <td colspan="5" class="text-center text-muted">Mặt hàng này chưa có ảnh nào trong thư viện.</td>
                             </tr>
                         }
                     </tbody>

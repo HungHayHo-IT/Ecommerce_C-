@@ -1,11 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using SV22T1020149.Admin;
 using SV22T1020149.BusinessLayers;
 using SV22T1020149.Models.Common;
 using SV22T1020149.Models.Partner;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace SV22T1020149.Admin.Controllers
 {
+    [Authorize(Roles = $"{WebUserRoles.Administrator},{WebUserRoles.DataManager}")]
     public class CustomerController : Controller
     {
         private const int PAGESIZE = 10;
@@ -17,10 +22,10 @@ namespace SV22T1020149.Admin.Controllers
         /// Nhập đầu vào tìm kiếm
         /// </summary>
         /// <returns></returns>
-        public  IActionResult Index()
+        public IActionResult Index()
         {
             var input = ApplicationContext.GetSessionData<PaginationSearchInput>(CUSTOMER_SEARCH);
-            if(input == null)
+            if (input == null)
                 input = new PaginationSearchInput()
                 {
                     Page = 1,
@@ -36,7 +41,7 @@ namespace SV22T1020149.Admin.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Search(PaginationSearchInput input)
         {
-            var result = await PartnerDataService.ListCustomersAsync (input);
+            var result = await PartnerDataService.ListCustomersAsync(input);
             ApplicationContext.SetSessionData(CUSTOMER_SEARCH, input);
             return View(result);
         }
@@ -47,13 +52,13 @@ namespace SV22T1020149.Admin.Controllers
         /// <returns></returns>
         public IActionResult Create()
         {
-            
+
             ViewBag.Title = "Thêm mới khách hàng";
             var model = new Customer()
             {
                 CustomerID = 0
             };
-            return View("Edit",model);
+            return View("Edit", model);
         }
 
         /// <summary>
@@ -65,7 +70,7 @@ namespace SV22T1020149.Admin.Controllers
         {
             ViewBag.Title = "Cập nhật khách hàng";
             var model = await PartnerDataService.GetCustomerAsync(id);
-            if(model == null)
+            if (model == null)
                 return RedirectToAction("Index");
             return View();
         }
@@ -75,71 +80,70 @@ namespace SV22T1020149.Admin.Controllers
         {
             try
             {
-
                 ViewBag.Title = data.CustomerID == 0 ? "Bổ sung khách hàng" : "Cập nhật thông tin khách hàng";
+                //TODO: Kiểm tra dữ liệu có hợp lệ không
 
-                // kiem tra du lieu co hop le hay khong]
-
-                // cach lam: su dung ModelState de luu cac tinh huong loi va thong bao loi cho nguoi dung
+                //Cách làm: Sử dụng ModelState dể lưu các tình huống lỗi và thông báo lỗi cho người dùng(trên View)
+                //Giả định: Chỉ yêu cầu nhập tên, emai, tỉnh/thành
                 if (string.IsNullOrWhiteSpace(data.CustomerName))
                     ModelState.AddModelError("CustomerName", "Vui lòng nhập tên khách hàng");
 
                 if (string.IsNullOrWhiteSpace(data.Email))
-                    ModelState.AddModelError(nameof(data.Email), "Email không được để trống");
-                else if (!await PartnerDataService.ValidatelCustomerEmailAsync(data.Email, data.CustomerID))
-                    ModelState.AddModelError(nameof(data.Email), "Email đã được sử dụng");
+                    ModelState.AddModelError(nameof(data.Email), "Email không được bỏ trống");
+                else if (await PartnerDataService.ValidateCustomerEmailAsync(data.Email, data.CustomerID))
+                    ModelState.AddModelError(nameof(data.Email), "Email bị trùng");
 
-                if (string.IsNullOrEmpty(data.Province))
-                    ModelState.AddModelError(nameof(data.Province), "Vui lòng chọn tỉnh thành phố");
+                if (string.IsNullOrWhiteSpace(data.Province))
+                    ModelState.AddModelError(nameof(data.Province), "Vui lòng chọn tỉnh thành");
 
                 if (!ModelState.IsValid)
                     return View("Edit", data);
 
-                //Hiệu chỉnh dữ liệu theo quy định hệ thống
+                //(Tùy chọn) Hiệu chỉnh dữ liệu theo qui định cuả hệ thống
                 if (string.IsNullOrWhiteSpace(data.ContactName)) data.ContactName = data.CustomerName;
                 if (string.IsNullOrEmpty(data.Phone)) data.Phone = "";
                 if (string.IsNullOrEmpty(data.Address)) data.Address = "";
 
 
-                //lưu vào database
+                //Lưu dữ liệu vào CSDL
                 if (data.CustomerID == 0)
                     await PartnerDataService.AddCustomerAsync(data);
                 else
                     await PartnerDataService.UpdateCustomerAsync(data);
                 return RedirectToAction("Index");
+                
             }
-
             catch (Exception ex)
             {
-                ModelState.AddModelError("Error", "Hệ thống hiện đang bận vui lòng thử lại sau vài phút ");
+                //Ghi log lỗi dựa vào thông tin Exception (ex.Message, ex.StackTrace)
+                ModelState.AddModelError("Error", "Hệ thống đang bận, vui lòng thử lại sau ít phút");
                 return View("Edit", data);
             }
+            
         }
-
-         /// <summary>
-         /// Xóa 1 khách hàng
-                /// </summary>
-                /// <param name="id">Mã khách hàng cần xóa</param>
-                /// <returns></returns>
+        /// <summary>
+        /// Xóa 1 khách hàng
+        /// </summary>
+        /// <param name="id">Mã khách hàng cần xóa</param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(int id)
         {
+            //Nếu method bằng POST thì xóa
             if(Request.Method == "POST")
             {
                 await PartnerDataService.DeleteCustomerAsync(id);
-                return RedirectToAction("Index"); 
+                return RedirectToAction("Index");
             }
-
+            //GET Hiển thị thông tin khách hàng cần xóa
             var model = await PartnerDataService.GetCustomerAsync(id);
             if (model == null)
-                return RedirectToAction("index");
+                return RedirectToAction("Index");
 
             ViewBag.CanDelete = !await PartnerDataService.IsUsedCustomerAsync(id);
 
             return View(model);
-            
-                    
-         }
-         
+        }
+
         /// <summary>
         /// Đổi mật khẩu khách hàng
         /// </summary>
